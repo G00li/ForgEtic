@@ -1,0 +1,7 @@
+services:
+  web:
+    build: .
+    volumes:
+      - .:/projeto
+    ports:
+      - 8000:8000

@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "forgetic"
+version = "0.1.0"
+description = "Projeto Etic"
+authors = ["Gooli <leandro.gooli@gmail.com>"]
+license = "MIT License"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
