@@ -11,19 +11,43 @@
 
     
     <body>
-        <h1>ForgEtic</h1>
 
-        {% block 'navBar' %}
-            <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'cadastro' %}">Sign up</a>
-        {% endblock %}
+        <section class = "home">
+            
+            {% comment %} NavBar  {% endcomment %}
+            
+            <section class = "home-nav">
+                <h1>ForgEtic</h1>
+
+                {% block 'navBar' %}
+
+                {% endblock %}
+            </section>
 
 
-        {% block 'content' %}
+
+            <section class = "home-content">
+            {% comment %} SideBar {% endcomment %}
+                <section class = "side-bar">
+                    <h1> Side Bar </h1>
+
+                    <div class = "btns">
+                        <a type="input">Upload</a>
+                    </div>
+
+                </section>
+
+                {% comment %} Content {% endcomment %}
+
+                <section class = "middle">
+                    {% block 'content' %}
 
 
+                    {% endblock %}
 
-        {% endblock %}
+                </section>
+            </section>
+        </section>
 
     </body>
 </html>

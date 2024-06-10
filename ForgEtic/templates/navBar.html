@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block 'navBar' %}
+    <div class = "btn_login">
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'cadastro' %}">Sign up</a>
+    </div> 
+{% endblock %}
