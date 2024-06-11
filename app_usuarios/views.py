@@ -44,6 +44,8 @@ def login(request):
         else:
             return HttpResponse("Erro ao realizar login. Verifique seu username e senha.")
 
-@login_required(login_url="/login/")
+
+
+@login_required(login_url="/login/") #REVIEW - Fazendo a verificação se o cliente está logado
 def homePage (request): 
         return HttpResponse('plataforma')

@@ -18,7 +18,14 @@ h1{
     margin-left:3%;
 }
 
-
+.name-logo{
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 2.3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    margin-left: 1.5rem;
+}
 
 .home-nav{
     display: flex;
@@ -26,26 +33,29 @@ h1{
     justify-content: space-between;
     height: 10dvh;
     width: 100%;
-    background-color: black;
+    background-color: red;
     align-items: center;
 }
 
 .btn_login{
-    align-items: center;
-    height: 2dvh;
+    display: flex;
+    justify-content: flex-end;
     margin-right: 3%;
     align-items: center;
-    justify-content: center;
+    height: 15%;
+    width: 15%;
 }
 
-.btn_login a{
-    margin: 10px;
-    padding: 7px;
+.btn_login a {
+    margin: 5%;
+    padding: 5%;
+    height: auto;
     background-color: lightgrey;
     color: black;
     text-decoration: none;
     border-radius: 10px;
-    cursor: pointer;   
+    cursor: pointer;  
+    align-items: center;
 }
 
 
@@ -71,16 +81,6 @@ h1{
 
 }
 
-.btn_upload a{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    color: white;
-    background-color:transparent;
-    cursor: pointer;
-}
-
 
 .btns{
     display: flex;
@@ -92,7 +92,19 @@ h1{
     color: white;
     border: 2px solid black;
     border-radius: 25px;
+    cursor: pointer;
 
+}
+
+.btns a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    width: 100%;
+    color: white;
+    background-color:transparent;
+    font-size: 1.5rem;
 }
 
 
@@ -110,3 +122,32 @@ h1{
     padding-top: 2%;
 }
 
+/* ___________________________________ MIDDLE Section _______________________________ */
+
+.middle{
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+    padding: 0.5% 0.5%;
+    background-color: blue;
+    width: 100%;
+}
+
+.class-map{
+    display: flex;
+    flex-direction: row;
+    height: 6%;
+    align-items: center;
+    padding-left: 2%;
+}
+
+.class-content{
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+    background-color: yellow;
+    height: 100%;
+    width: 100%;
+    padding: 1% 1%;
+
+}

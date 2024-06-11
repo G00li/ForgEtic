@@ -1,24 +1,16 @@
-<html>
+{% extends "base.html" %}
 
-    <head>
+{% block 'content' %}
 
+    <form action = "{% url 'login' %}" method = "POST">
+        {% csrf_token %}
+        <p>Username</p>
+        <input type = "text" placeholder = "Username" name = "username">
+        <p>Password</p>
+        <input type = "password" placeholder = "Password" name = "senha">
+        <input type = "submit" value = "Logar">
 
-    </head>
-
-    <body>
-    
-        <form action = "{% url 'login' %}" method = "POST">
-            {% csrf_token %}
-            <p>Username</p>
-           <input type = "text" placeholder = "Username" name = "username">
-           <p>Password</p>
-           <input type = "password" placeholder = "Password" name = "senha">
-           <input type = "submit" value = "Logar">
-
-        </form>
+    </form>
 
 
-
-    </body>
-
-</html>
+{% endblock %}

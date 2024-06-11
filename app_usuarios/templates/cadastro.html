@@ -1,26 +1,17 @@
-<html>
+{%extends "base.html"%}
 
-    <head>
+{%block 'content'%}
 
+    <form action = "{% url 'cadastro' %}" method = "POST">
+        {% csrf_token %}
+        <p>Username</p>
+        <input type = "text" placeholder = "Username" name = "username">
+        <p>Email</p>
+        <input type = "email" placeholder = "Email" name = "email">
+        <p>Password</p>
+        <input type = "password" placeholder = "Password" name = "senha">
+        <input type = "submit" value = "Cadastrar">
 
-    </head>
+    </form>
 
-    <body>
-    
-        <form action = "{% url 'cadastro' %}" method = "POST">
-            {% csrf_token %}
-            <p>Username</p>
-           <input type = "text" placeholder = "Username" name = "username">
-           <p>Email</p>
-           <input type = "email" placeholder = "Email" name = "email">
-           <p>Password</p>
-           <input type = "password" placeholder = "Password" name = "senha">
-           <input type = "submit" value = "Cadastrar">
-
-        </form>
-
-
-
-    </body>
-
-</html>
+{%endblock%}

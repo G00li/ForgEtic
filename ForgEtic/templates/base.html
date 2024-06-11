@@ -14,36 +14,46 @@
 
         <section class = "home">
             
-            {% comment %} NavBar  {% endcomment %}
+            {% comment %} NavBar {% endcomment %}
             
             <section class = "home-nav">
-                <h1>ForgEtic</h1>
+                {% comment %} <h1>ForgEtic</h1> {% endcomment %}
+                <a class = "name-logo" href= "{% url 'home'%}">ForgEtic</a>
 
                 {% block 'navBar' %}
-
+                    <div class = "btn_login">
+                        <a href="{% url 'login' %}">Login</a>
+                        <a href="{% url 'cadastro' %}">Sign up</a>
+                    </div>          
                 {% endblock %}
             </section>
-
-
 
             <section class = "home-content">
             {% comment %} SideBar {% endcomment %}
                 <section class = "side-bar">
                     <h1> Side Bar </h1>
 
-                    <div class = "btns">
-                        <a type="input">Upload</a>
-                    </div>
+                    {% block 'SideBar' %}
+                        <div class = "btns">
+                            <a href = "{% url 'uploadFile'%}">Upload</a>
+                        </div>
 
+                    {%endblock%}
                 </section>
 
                 {% comment %} Content {% endcomment %}
-
                 <section class = "middle">
-                    {% block 'content' %}
+                    <section class = "class-map">
+                        map
+                    </section>
 
+                    <section class="class-content">
 
-                    {% endblock %}
+                        {% block 'content' %}
+
+                        {% endblock %}
+                    </section>
+
 
                 </section>
             </section>
