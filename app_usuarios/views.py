@@ -1,7 +1,7 @@
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as login_django
 from django.contrib.auth.decorators import login_required
 
@@ -20,12 +20,12 @@ def cadastro(request):
 
         if user: # Confere se já existe algum username igual já cadastrado na base de dados 
             return HttpResponse("Username já cadastrado")
-            #REVIEW - If não está funcionando
 
         user = User.objects.create_user(username=username, email=email, password=senha) #//NOTE - Criando o user e associando seus atributos
         user.save()
 
-        return HttpResponse("Ususario cadastrado com sucesso!")
+        # return HttpResponse("Ususario cadastrado com sucesso!")
+        return redirect('login')
 
 
 def login(request):
@@ -39,10 +39,20 @@ def login(request):
 
         if user:
             login_django(request, user)
-            return HttpResponse("Login realizado com sucesso!")
+            return redirect('home')
         
         else:
             return HttpResponse("Erro ao realizar login. Verifique seu username e senha.")
+        
+
+# @login_required(login_url="/login/")
+# def logout(request):
+#     return redirect ('home')
+
+
+def user_logout (request):
+    logout(request)
+    return redirect('home')
 
 
 

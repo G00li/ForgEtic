@@ -1,13 +1,29 @@
 {% extends "base.html" %}
 
-{% block 'content' %}
-    <h1>Bem vindo</h1>
+{% block 'semLogin' %}
+
+    <section class = 'initial-page' >
+        <h1> Bem vindo ao ForgEtic </h1>
+    </section>
+
+
+
+    <section class = 'login-cadastro'> 
+
+        <div class= "initial-message"> 
+            <h3 class = "h3-login"> Faça seu Login ou cadastre-se em nossa plataforma </h3>
+
+            <p class = "p-inicial">O jeito mais fácil de não esquecer nenhum documento</p>
+        </div>
+
+        
+        {%block 'loginPage'%}
+
+        {%endblock%}
+
+        {%block 'cadastroPage'%}
+
+        {%endblock%}
+
+    </section>
 {% endblock %}
-
-{% comment %} {%block 'navBar'%}
-        <div class = "btn_login">
-            <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'cadastro' %}">Sign up</a>
-        </div>  
-
-{% endblock %}  {% endcomment %}

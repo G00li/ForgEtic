@@ -1,16 +1,22 @@
-{% extends "base.html" %}
+{% extends "index.html" %}
 
-{% block 'content' %}
+{% block 'loginPage' %}
 
-    <form action = "{% url 'login' %}" method = "POST">
-        {% csrf_token %}
-        <p>Username</p>
-        <input type = "text" placeholder = "Username" name = "username">
-        <p>Password</p>
-        <input type = "password" placeholder = "Password" name = "senha">
-        <input type = "submit" value = "Logar">
+    <div class = "div-login">
+        <h3 class = "h3-login"> Faça seu login e consulte todos os seus dados </h3>
+        <form action = "{% url 'login' %}" method = "POST">
+            {% csrf_token %}
+            <p>Username*</p>
+            <input type = "text" placeholder = "Username" name = "username" required>
+            <p>Password*</p>
+            <input type = "password" placeholder = "Password" name = "senha" required>
+            <p class = "message" >* Campos obrigatórios</p>
 
-    </form>
+            <div class= "div-submit">
+                <input class = "btn-submit" type = "submit" value = "Logar" required>
+            </div>
 
+        </form>
 
+    </div>
 {% endblock %}

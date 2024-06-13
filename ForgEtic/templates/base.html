@@ -7,6 +7,7 @@
 
         {% load static %}
         <link rel="stylesheet" href="{% static '../static/style.css' %}">
+        <link rel="stylesheet" href="{% static '../static/initialPage.css' %}">
     </head>
 
     
@@ -15,49 +16,65 @@
         <section class = "home">
             
             {% comment %} NavBar {% endcomment %}
-            
             <section class = "home-nav">
-                {% comment %} <h1>ForgEtic</h1> {% endcomment %}
-                <a class = "name-logo" href= "{% url 'home'%}">ForgEtic</a>
+ 
+                {%block 'navBar'%}
+                    <a class = "name-logo" href= "{% url 'home'%}">ForgEtic</a>
 
-                {% block 'navBar' %}
-                    <div class = "btn_login">
-                        <a href="{% url 'login' %}">Login</a>
-                        <a href="{% url 'cadastro' %}">Sign up</a>
-                    </div>          
+                    {% if user.is_authenticated %}
+                        <div class = "btn_login">
+                            <a href="{% url 'logout'%}">Logout</a>
+                        </div>
+                    {%else%}
+                        <div class = "btn_login">
+                            <a href="{% url 'login' %}">Login</a>
+                            <a href="{% url 'cadastro' %}">Sign up</a>
+                        </div>
+                    {%endif%}
+
                 {% endblock %}
             </section>
 
+
             <section class = "home-content">
-            {% comment %} SideBar {% endcomment %}
-                <section class = "side-bar">
-                    <h1> Side Bar </h1>
+                {%block 'content'%}
+                    {% if user.is_authenticated %}
+                        {% block 'SideBar' %}
+                            <section class = "side-bar">
+                                <h1> Side Bar </h1>
+                                <div class = "btns">
+                                    <a href = "{% url 'uploadFile'%}">Upload</a>
+                                </div>
 
-                    {% block 'SideBar' %}
-                        <div class = "btns">
-                            <a href = "{% url 'uploadFile'%}">Upload</a>
-                        </div>
+                            </section>  
+                        {%endblock%}
 
-                    {%endblock%}
-                </section>
-
-                {% comment %} Content {% endcomment %}
-                <section class = "middle">
-                    <section class = "class-map">
-                        map
-                    </section>
-
-                    <section class="class-content">
-
-                        {% block 'content' %}
+                        {%block 'middle'%}
+                            <section class = "middle">
+                                <section class = "class-map">
+                                    map
+                                </section>
+                            </section>
 
                         {% endblock %}
-                    </section>
 
 
-                </section>
+                        {% block 'workView' %}
+
+                        {% endblock %}
+
+
+
+                    {%else%}
+                        {%block 'semLogin'%}
+                    
+                        {%endblock%}
+                    {%endif%}
+                {% endblock %}
+                           
             </section>
         </section>
+        
 
     </body>
 </html>

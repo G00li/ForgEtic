@@ -1,17 +1,25 @@
-{%extends "base.html"%}
+{%extends "index.html"%}
 
-{%block 'content'%}
+{%block 'cadastroPage'%}
 
-    <form action = "{% url 'cadastro' %}" method = "POST">
-        {% csrf_token %}
-        <p>Username</p>
-        <input type = "text" placeholder = "Username" name = "username">
-        <p>Email</p>
-        <input type = "email" placeholder = "Email" name = "email">
-        <p>Password</p>
-        <input type = "password" placeholder = "Password" name = "senha">
-        <input type = "submit" value = "Cadastrar">
 
-    </form>
+    <div class = "div-login">
+            <h3 class = "h3-login">Após esses campos, voce só precisa lembrar do seu email e senha </h3>
+        <form action = "{% url 'cadastro' %}" method = "POST">
+            {% csrf_token %}
+            <p>Username*</p>
+            <input type = "text" placeholder = "Username" name = "username">
+            <p>Email*</p>
+            <input type = "email" placeholder = "Email" name = "email">
+            <p>Password*</p>
+            <input type = "password" placeholder = "Password" name = "senha">
+            <p class = "message" >* Campos obrigatórios</p>
 
+            <div class= "div-submit">
+                <input class = "btn-submit" type = "submit" value = "Cadastrar">
+            </div>
+
+
+        </form>
+    </div>
 {%endblock%}

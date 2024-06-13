@@ -1,13 +1,14 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from ForgEtic.views import IndexView
+from ForgEtic.views import IndexView,HomePage
 
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path("", IndexView.as_view(), name='home'),
+    path("homepage/", HomePage.as_view(), name = 'homePage'),
     path("auth/", include('app_usuarios.urls'), name='usuarios'),
     path("upload/", include('app_upload.urls'), name = "file"),
     path("admin/", admin.site.urls),
