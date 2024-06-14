@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block 'content' %}
+{% block 'workView' %}
 
 <form action = "{% url 'uploadFile' %}" method = "POST" enctype = "multipart/form-data">
     {% csrf_token %}
 
-    <input type = "file" name = "upload_file">
+    <input type = "file" name = "upload_file" multiple required>
     <input type = "submit" value= "Submit">
 
 </form> 

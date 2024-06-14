@@ -7,12 +7,24 @@
             <h3 class = "h3-login">Após esses campos, voce só precisa lembrar do seu email e senha </h3>
         <form action = "{% url 'cadastro' %}" method = "POST">
             {% csrf_token %}
-            <p>Username*</p>
-            <input type = "text" placeholder = "Username" name = "username">
+
+            {% if messages %}
+                {% for m in messages %}
+                    <div class="alerta" role="alert">
+                    {{ m }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+
+            <p>Nome*</p>
+            <input type = "text" placeholder = "Nome" name = "username", required>
             <p>Email*</p>
-            <input type = "email" placeholder = "Email" name = "email">
-            <p>Password*</p>
-            <input type = "password" placeholder = "Password" name = "senha">
+            <input type = "email" placeholder = "Email" name = "email", required>
+            <p>Senha*</p>
+            <input type = "password" placeholder = "Senha" name = "senha", required>
+            <p>Contra senha*</p>
+            <input type = "password" placeholder = "Contra senha" name = "contraSenha", required>
             <p class = "message" >* Campos obrigatórios</p>
 
             <div class= "div-submit">

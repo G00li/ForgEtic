@@ -130,6 +130,17 @@ h1{
     padding-top: 2%;
 }
 
+/* ___________________________________ Work Section _______________________________ */
+
+.work{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+
+
 /* ___________________________________ MIDDLE Section _______________________________ */
 
 .middle{
@@ -139,6 +150,7 @@ h1{
     padding: 0.5% 0.5%;
     background-color: blue;
     width: 100%;
+    height: 7%;
 }
 
 .class-map{

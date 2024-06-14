@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as login_django
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 
@@ -14,12 +15,23 @@ def cadastro(request):
         username = request.POST.get('username')
         email = request.POST.get('email')
         senha = request.POST.get('senha')
-        # //TODO - Criar confirmação de senha -> confirmacao_senha = request.POST.get('confirmacao_senha')
+        contrasenha = request.POST.get('contraSenha')
+        
+
+        if senha != '' and contrasenha != '':
+            if senha != contrasenha:
+             # //TODO - Fazer uma melhor view para senhas diferentes
+                messages.info(request, 'Senha diferente de Contra senha')
+                return render(request, 'cadastro.html')
         
         user = User.objects.filter( username=username).first() 
 
         if user: # Confere se já existe algum username igual já cadastrado na base de dados 
-            return HttpResponse("Username já cadastrado")
+            #TODO - Fazer uma melhor versão para quando o username já existe
+            
+            messages.info(request, 'O usuario ja existe')
+            return render(request, 'cadastro.html')
+            
 
         user = User.objects.create_user(username=username, email=email, password=senha) #//NOTE - Criando o user e associando seus atributos
         user.save()
@@ -42,12 +54,8 @@ def login(request):
             return redirect('home')
         
         else:
-            return HttpResponse("Erro ao realizar login. Verifique seu username e senha.")
-        
-
-# @login_required(login_url="/login/")
-# def logout(request):
-#     return redirect ('home')
+            messages.info(request, 'Erro ao realizar login. Verifique seu username e senha.')
+            return redirect ('login')
 
 
 def user_logout (request):

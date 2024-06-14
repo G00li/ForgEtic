@@ -39,9 +39,10 @@
 .initial-message{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: 6%;
     align-items: center;
-    height: 100%;
+    height: 60%;
 
 }
 
@@ -57,15 +58,14 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    justify-content: center;
-    /* align-items: center; */
+    justify-content: flex-start;
 }
 
 form{
     display: flex;
     flex-direction: column;
-    height: 50%;
-    margin-top: 10%;
+    height: 100%;
+    margin-top: 15%;
     padding: 5%;
 }
 
@@ -84,8 +84,8 @@ p{
 }
 .message{
     margin-top: -2%;
-    font-size: 10px;
-    color: lightgray;
+    font-size: 11px;
+    color: rgb(167, 166, 166);
 }
 
 .h3-login{
@@ -95,25 +95,51 @@ p{
 
 }
 
-.div-submit{
+
+
+.div-submit {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: center;
+    margin-top: 10%;
 }
 
-input.btn-submit{
+.btn-submit {
     display: flex;
-    height: 9%;
-    width: 80%;
-    margin-top: 10%;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    height: 100%; 
+    width: 80%;
+    padding: 0 20px; 
+    border: none;
+    background-color: #007bff; 
+    color: #fff; 
+    font-size: 16px; 
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s; /* Adiciona transições */
 }
+
+
+.btn-submit:hover {
+    background-color: #0056b3; /* Muda a cor de fundo ao passar o mouse */
+}
+
+.btn-submit:active {
+    transform: translateY(2px); /* Move o botão um pouco para baixo ao clicar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra sutil */
+}
+
+
 
 input[type="submit"] {
     text-align: center;
     vertical-align: center;
+}
+
+.alerta{
+    color: red;
+    font-size: medium;
+    margin-bottom: 15%;
+
 }

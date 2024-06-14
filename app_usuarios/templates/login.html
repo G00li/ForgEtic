@@ -6,6 +6,15 @@
         <h3 class = "h3-login"> Faça seu login e consulte todos os seus dados </h3>
         <form action = "{% url 'login' %}" method = "POST">
             {% csrf_token %}
+
+            {% if messages %}
+                {% for m in messages %}
+                    <div class="alerta" role="alert">
+                    {{ m }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
             <p>Username*</p>
             <input type = "text" placeholder = "Username" name = "username" required>
             <p>Password*</p>
