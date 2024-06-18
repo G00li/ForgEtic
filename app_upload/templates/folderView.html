@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block 'workView' %}
+
+    <h1>Minhas Pastas</h1>
+        
+    <form method="GET" action="{%url 'folderView'%}">
+        {% csrf_token %}
+        <ul>
+            {% for folder in folders %}
+                <li><a class = "folderName", href="{% url 'folderView'%}">{{ folder.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </form>
+
+{%endblock%}

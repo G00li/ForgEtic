@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "ForgEtic",
+    "app_upload",
     "app_usuarios",
-    "app_upload"
 ]
 
 MIDDLEWARE = [

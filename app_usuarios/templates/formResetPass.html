@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+
+{% block 'loginPage' %}
+
+    <div class = "div-login">
+        <h3 class = "h3-login"> Informe seus dados para redefinir a senha </h3>
+        <form action = "{% url 'resetPassword' %}" method = "POST">
+            {% csrf_token %}
+
+            {% if messages %}
+                {% for m in messages %}
+                    <div class="alerta" role="alert">
+                    {{ m }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <p>Username*</p>
+            <input type = "text" placeholder = "Username" name = "username" required>
+            <p>Email*</p>
+            <input type = "email" placeholder = "Email" name = "email" required>
+            <p>Nova senha*</p>
+            <input type = "password" placeholder = "Senha" name = "senha", required>
+            <p>Contra senha*</p>
+            <input type = "password" placeholder = "Contra senha" name = "contraSenha", required>
+
+            <p class = "message" >* Campos obrigatórios</p>
+
+            <div class= "div-submit">
+                <input class = "btn-submit" type = "submit" value = "Redefinir senha" required>
+            </div>
+
+        </form>
+
+    </div>
+{% endblock %}

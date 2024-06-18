@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block 'workView' %}
+
+<form class = "ClassFolderName" action = "{% url 'newfolder' %}" method = "POST">
+    {% csrf_token %}
+
+    <p>Folder Name </p>
+    <input name = "foldername" placeholder = "Folder Name"></input>
+    <input type = "submit" value= "Submit">
+
+</form> 
+
+{%endblock%}

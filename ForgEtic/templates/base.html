@@ -6,8 +6,10 @@
         <title>ForgEtic</title>
 
         {% load static %}
-        <link rel="stylesheet" href="{% static '../static/style.css' %}">
-        <link rel="stylesheet" href="{% static '../static/initialPage.css' %}">
+        <link rel="stylesheet" href="{% static '../static/Css/style.css' %}">
+        <link rel="stylesheet" href="{% static '../static/Css/initialPage.css' %}">
+        <script src = "../../app_upload/static/Js/uploadFile.js"></script>
+        {% comment %} <script src = "../static/Js/createFolder.js"> </script> {% endcomment %}
     </head>
 
     
@@ -22,7 +24,8 @@
                     <a class = "name-logo" href= "{% url 'home'%}">ForgEtic</a>
 
                     {% if user.is_authenticated %}
-                        <div class = "btn_login">
+                        <div class = "logado">
+                            <p>{{user.username}}<p>
                             <a href="{% url 'logout'%}">Logout</a>
                         </div>
                     {%else%}
@@ -43,7 +46,9 @@
                             <section class = "side-bar">
                                 <h1> Side Bar </h1>
                                 <div class = "btns">
-                                    <a href = "{% url 'uploadFile'%}">Upload</a>
+                                    <a class = "btn_upload" href = "{% url 'folderView'%}">Folder View</a>
+                                    <a class = "btn_upload" href = "{% url 'newfolder'%}">New Folder</a>
+                                    <a class = "btn_upload" href = "{% url 'uploadFile'%}">Upload</a>
                                 </div>
 
                             </section>  

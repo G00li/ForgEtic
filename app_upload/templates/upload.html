@@ -2,7 +2,7 @@
 
 {% block 'workView' %}
 
-<form action = "{% url 'uploadFile' %}" method = "POST" enctype = "multipart/form-data">
+<form class = "uploadForm" action = "{% url 'uploadFile' %}" method = "POST" enctype = "multipart/form-data">
     {% csrf_token %}
 
     <input type = "file" name = "upload_file" multiple required>
