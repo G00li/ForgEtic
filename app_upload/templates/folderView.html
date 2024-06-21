@@ -4,12 +4,36 @@
 
     <h1>Minhas Pastas</h1>
         
-    <form method="GET" action="{%url 'folderView'%}">
+    <form class= "folderViewForm" method="GET" action="{%url 'folderView'%}">
         {% csrf_token %}
         <ul>
             {% for folder in folders %}
-                <li><a class = "folderName", href="{% url 'folderView'%}">{{ folder.name }}</a></li>
-            {% endfor %}
+                
+            
+                <div class = "folders">
+                    <a href= "/upload/folderView/{{folder.id}}" class = "folderName", href="{% url 'folderView'%}">{{ folder.name }}</a>
+                    
+                    
+                    <div class = "btns_folder">
+                        <form method = "POST" action = {%url "rename_folder" folder.id%}>
+                            {% csrf_token %}
+                            <label>Novo nome </label>
+                            <input type = "text" name = "new_name" placeholder = "Insira o novo nome" required>
+                            <button type = "submit" class = "btn_rename">RENAME</button>
+                        </form>
+
+                        <form method = "POST" action = {%url "delete_folder" folder.id %}>
+                            {% csrf_token %}
+                            <button class = "btn_delete">DELETE</button>
+
+                        </form>
+
+
+                    </div>
+                </div>
+
+
+            {% endfor %}    
         </ul>
     </form>
 

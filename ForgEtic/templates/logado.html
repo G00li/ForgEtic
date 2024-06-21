@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+
+{%block 'logado'%}
+
+{% block 'SideBar' %}
+    <section class = "side-bar">
+        <h1> Side Bar </h1>
+        <div class = "btns">
+            <a class = "btn_upload" href = "{% url 'folderView'%}">Folder View</a>
+            <a class = "btn_upload" href = "{% url 'newfolder'%}">New Folder</a>
+            <a class = "btn_upload" href = "{% url 'uploadFile'%}">Upload</a>
+        </div>
+
+    </section>  
+    {%endblock%}
+
+    <section class = 'work'>
+    {%block 'middle'%}
+        <section class = "middle">
+            <section class = "class-map">
+                map
+            </section>
+        </section>
+
+    {% endblock %}
+
+
+    {% block 'workView' %}
+
+    {% endblock %}
+    </section>
+{%endblock%}

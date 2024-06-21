@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 
+# from ForgEtic.views import LoginCheck
 from ForgEtic.views import IndexView
 
 from django.conf import settings

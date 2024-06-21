@@ -1,0 +1,35 @@
+.folderViewForm{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 3%;
+    margin-top: 1%;
+    width: 100%; 
+    height: 100%;
+}
+
+ul{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+
+.folders{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 30%;
+}
+
+.btns_folder{
+    display: flex;
+    flex-direction: row;
+}
+
+a.foldername{
+    width: 100%;
+    height: 60%;
+}

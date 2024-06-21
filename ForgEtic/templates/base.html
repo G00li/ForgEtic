@@ -8,7 +8,7 @@
         {% load static %}
         <link rel="stylesheet" href="{% static '../static/Css/style.css' %}">
         <link rel="stylesheet" href="{% static '../static/Css/initialPage.css' %}">
-        <script src = "../../app_upload/static/Js/uploadFile.js"></script>
+        <link rel="stylesheet" href="{% static '../static/Css/folder.css' %}">
         {% comment %} <script src = "../static/Js/createFolder.js"> </script> {% endcomment %}
     </head>
 
@@ -70,11 +70,11 @@
                             {% endblock %}
                         </section>
 
-
                     {%else%}
                         {%block 'semLogin'%}
                     
                         {%endblock%}
+
                     {%endif%}
                 {% endblock %}
                            

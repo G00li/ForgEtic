@@ -2,13 +2,21 @@
 
 {% block 'workView' %}
 
+<h2>Create Folder </h2>
+{% if messages %}
+{% for message in messages %}
+  <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+    {{ message }}
+  </div>
+{% endfor %}
+{% endif %}
 <form class = "ClassFolderName" action = "{% url 'newfolder' %}" method = "POST">
     {% csrf_token %}
 
-    <p>Folder Name </p>
-    <input name = "foldername" placeholder = "Folder Name"></input>
-    <input type = "submit" value= "Submit">
 
+    <label for="foldername">Folder Name:</label>
+    <input name = "foldername" placeholder = "Folder Name", required></input>
+    <button type="submit">Create</button>
 </form> 
 
 {%endblock%}
