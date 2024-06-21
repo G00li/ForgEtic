@@ -3,12 +3,20 @@
 {% block 'workView' %}
 
     <h1>Minhas Pastas</h1>
-        
     <form class= "folderViewForm" method="GET" action="{%url 'folderView'%}">
-        {% csrf_token %}
+        {% csrf_token %}     
         <ul>
+            {%block 'mensagens'%}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {%endblock%}
+
             {% for folder in folders %}
-                
             
                 <div class = "folders">
                     <a href= "/upload/folderView/{{folder.id}}" class = "folderName", href="{% url 'folderView'%}">{{ folder.name }}</a>

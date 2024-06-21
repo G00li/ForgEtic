@@ -28,9 +28,8 @@ class Folder(models.Model):
 
 
 class UploadFile(models.Model): 
-    title = models.CharField(max_length = 50)
+    title = models.CharField(max_length = 255)
     file = models.FileField(upload_to = 'files')
-    # parent = models.ForeignKey(Folder, blank=True)
 
     def __str__(self):
         return self.title

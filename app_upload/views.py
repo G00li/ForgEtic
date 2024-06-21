@@ -2,8 +2,23 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from django.contrib import messages
-from datetime import datetime
 from .models import  Folder ,UploadFile
+from .forms import UpdateForm
+from django.http import HttpResponse
+
+
+@login_required(login_url="/login/")
+def folder_view(request):
+
+
+    if request.method == 'GET': 
+        folders = Folder.objects.filter(user=request.user)
+        return render(request,'folderView.html', {'folders': folders})
+        
+
+    elif request.method == "POST": 
+        return render (request, 'folderView.html')
+
 
 
 @login_required(login_url="/login/")
@@ -16,9 +31,8 @@ def newFolder (request):
         foldername = request.POST.get('foldername')
         user = request.user
 
-
         if Folder.objects.filter(name=foldername, user=user).exists():
-            messages.error(request, "Folder already exists")
+            messages.error(request, "Ficheiro já existe")
             return render(request, "folder.html")
 
         newFolder = Folder(name=foldername, user=request.user)
@@ -37,17 +51,25 @@ def deleteFolder(request, folder_id):
     return render(request, 'folderView.html')
 
 
+
+
 def renameFolder (request, folder_id):
 
     folder = get_object_or_404(Folder, pk=folder_id)
+    user = request.user
+    new_name = request.POST.get('new_name')
+
 
     if request.method == 'POST':
-        new_name = request.POST.get('new_name')
+        if Folder.objects.filter(name=new_name, user=user).exists():
+            messages.error(request, "Ficheiro já existe") #TODO - exibir a mensagem de erro no inicio da folder
+            return render(request, "folderView.html")
+        
         folder.name = new_name
         folder.save()
         return redirect('folderView')
     
-    return render (request, 'folderView.html')
+    return redirect('folderView.html')
 
 
 
@@ -63,32 +85,21 @@ def getFolderUrl(request, slug):
 
 
 
-@login_required(login_url="/login/")
-def folder_view(request):
-    # print(request.user.folders.all().filter(name='leandro')[0].id)
 
-    
-    if request.method == 'GET': 
-        folders = Folder.objects.filter(user=request.user)
-        return render(request,'folderView.html', {'folders': folders})
-        
-
-    elif request.method == "POST": 
-        return render (request, 'folderView.html')
-
-
-
-current_time = datetime.now()
 @login_required(login_url="/login/") 
-def upload (request): 
-    if request.method == 'GET':
-        return render(request, "upload.html")
-    
-    elif request.method == "POST": 
-        file = request.FILES.get('upload_file')
+def uploadFile(request):
+    if request.method == 'POST':
+        form = UpdateForm(request.POST, request.FILE)
+
+        if form.is_valid():
+            form.save()
+            return redirect('uploadSucess')
+        
+    else:
+        form = UpdateForm()
+
+    return render (request, 'upload.html', {'form': form})
 
 
-        uploadFile = UploadFile(title = "File", file=file)
-        uploadFile.save()
-
-        return redirect ('home')
+def uploadSucess(request):
+    return HttpResponse("Upload realizado com sucesso!")
