@@ -49,11 +49,31 @@
                     {% if user.is_authenticated %}
                         {% block 'SideBar' %}
                             <section class = "side-bar">
-                                <h1> Side Bar </h1>
+                                <h1> Barra lateral </h1>
                                 <div class = "btns">
-                                    <a class = "btn_upload" href = "{% url 'folderView'%}">Folder View</a>
-                                    <a class = "btn_upload" href = "{% url 'newfolder'%}">New Folder</a>
-                                    <a class = "btn_upload" href = "{% url 'uploadFile'%}">Upload</a>
+                                    <a class = "btn_upload" href = "{% url 'folderView'%}">All</a>
+
+                                    
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                
+                                
+                                  <form class = "ClassFolderName" action = "{% url 'newfolder' %}" method = "POST">
+                                        {% csrf_token %}
+                                
+                                        <input type='hidden' name="parent_folder" value="{{current_folder_id}}">
+                                        <label for="foldername">Nome da pasta: </label>
+                                        <input name = "foldername" placeholder = "Folder Name", required></input>
+                                        <button type="submit">Criar</button>
+                                  </form> 
+                                
+                                    {% comment %} <a class = "btn_upload" href = "{% url 'newfolder'%}">Nova Pasta</a> {% endcomment %}
+                                    {% comment %} <a class = "btn_upload" href = "{% url 'uploadFile'%}">Upload</a> {% endcomment %}
                                 </div>
 
                             </section>  
@@ -66,13 +86,18 @@
                                         map
                                     </section>
                                 </section>
-
                             {% endblock %}
 
+                            <section class= "sectionWorkView">
 
-                            {% block 'workView' %}
+                                {% comment %} {% block 'navWork' %}
 
-                            {% endblock %}
+                                {% endblock %} {% endcomment %}
+                                {% block 'workView' %}
+
+                                {% endblock %}
+                            </section>
+
                         </section>
 
                     {%else%}

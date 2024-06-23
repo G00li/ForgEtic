@@ -1,8 +1,7 @@
-{% extends "base.html" %}
+{% comment %} {% extends "base.html" %}
 
-{% block 'workView' %}
+{% block 'novaPasta' %}
 
-  <h2>Create Folder </h2>
   {% if messages %}
     {% for message in messages %}
       <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
@@ -21,4 +20,4 @@
       <button type="submit">Create</button>
   </form> 
 
-{%endblock%}
+{%endblock%}  {% endcomment %}
