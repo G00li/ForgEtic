@@ -1,0 +1,48 @@
+.divfile{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 50%;
+    margin: 1%;
+    background-color: burlywood;
+    color: var(--folder-text-color);
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.btns_file{
+    width: 100%;
+    margin-top: 10px;
+}
+
+
+.labelFileName{
+    width: 100%;
+    align-self: center;
+    font-size: 1.5vw;
+}
+.formFileRename{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: 40%;
+}
+
+input[type="text"] {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.btn_rename, .btn_delete {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}

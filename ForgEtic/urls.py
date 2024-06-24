@@ -10,7 +10,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("", IndexView.as_view(), name='home'),
     path("auth/", include('app_usuarios.urls'), name='usuarios'),
-    path("upload/", include('app_upload.urls'), name = "file"),
+    path("Home/", include('app_upload.urls'), name = "file"),
     path("admin/", admin.site.urls),
 ]
 

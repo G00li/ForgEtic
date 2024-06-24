@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="{% static '../static/Css/style.css' %}">
         <link rel="stylesheet" href="{% static '../static/Css/initialPage.css' %}">
         <link rel="stylesheet" href="{% static '../static/Css/folder.css' %}">
+        <link rel="stylesheet" href="{% static '../static/Css/file.css' %}">
         {% comment %} <script src = "../static/Js/createFolder.js"> </script> {% endcomment %}
     </head>
 
@@ -63,36 +64,47 @@
                                     {% endif %}
                                 
                                 
-                                  <form class = "ClassFolderName" action = "{% url 'newfolder' %}" method = "POST">
+                                    <form class = "ClassFolderName" action = "{% url 'newfolder' %}" method = "POST">
                                         {% csrf_token %}
                                 
                                         <input type='hidden' name="parent_folder" value="{{current_folder_id}}">
                                         <label for="foldername">Nome da pasta: </label>
                                         <input name = "foldername" placeholder = "Folder Name", required></input>
                                         <button type="submit">Criar</button>
-                                  </form> 
-                                
-                                    {% comment %} <a class = "btn_upload" href = "{% url 'newfolder'%}">Nova Pasta</a> {% endcomment %}
-                                    {% comment %} <a class = "btn_upload" href = "{% url 'uploadFile'%}">Upload</a> {% endcomment %}
+                                    </form> 
+
+                                    <form class = "uploadFile" action="{% if folder %}{%url 'uploadFile' folder.id %}{%else%}{%url 'uploadFile'%}{%endif%}" method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {% if error_message %}
+                                            <div style="color: red;">
+                                                {{ error_message }}
+                                            </div>
+                                        {% endif %}
+
+                                        {% if success_message %}
+                                            <div style="color: green;">
+                                                {{ success_message }}
+                                            </div>
+                                        {% endif %}
+                                        
+
+                                        <label class = "inputFile" for = "file">Escolher arquivo</label>
+                                        <input  class = "escolherFile" id="file" type="file" name="file">
+                                        <div class = "btns_confirmacao">
+                                            {% comment %} <button class = "btn_uploadFile" type="submit"><span>✅</span></button> {% endcomment %}
+                                            <button class = "btn_uploadFile2" type="submit">Submeter</button>
+                                        </div>
+                                    </form>
+
                                 </div>
 
                             </section>  
                         {%endblock%}
 
                         <section class = 'work'>
-                            {%block 'middle'%}
-                                <section class = "middle">
-                                    <section class = "class-map">
-                                        map
-                                    </section>
-                                </section>
-                            {% endblock %}
 
                             <section class= "sectionWorkView">
 
-                                {% comment %} {% block 'navWork' %}
-
-                                {% endblock %} {% endcomment %}
                                 {% block 'workView' %}
 
                                 {% endblock %}

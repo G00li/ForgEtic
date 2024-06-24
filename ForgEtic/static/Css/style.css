@@ -13,7 +13,7 @@ body{
 
 h1{
     color: blue;
-    margin-left:3%;
+    margin-left:1%;
 }
 
 
@@ -21,7 +21,7 @@ h1{
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100dvh;
+    height: 90vh;
 }
 
 .name-logo{
@@ -207,8 +207,23 @@ h1{
 
 .sectionWorkView{
     display: flex;
-    height: 93%;
+    height: 100%;
     width: 100%;
+    flex-direction: column;
+}
+
+.map{
+    display: flex;
+    height: 5%;
+    width: 100%;
+    margin-bottom: 2%;
+    font-size: larger;
+}
+
+.foldersAndFiles{
+    display: flex;
+    width: 100%;
+    height: 100vh;
 }
 
 
@@ -258,3 +273,55 @@ h1{
 }
 
 
+/* ________________________________ FORMS ___________________________ */
+
+
+.ClassFolderName{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 20%;
+}
+
+
+.uploadFile{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 30%;
+    gap:10px ;
+}
+
+.escolherFile{
+    display: none;
+}
+
+.inputFile{
+    display: flex;
+    width: 100%;
+    height: 12%;
+    background-color: #0b6dd6;
+    font-size: large;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}
+
+.btns_confirmacao{
+    display: flex;
+    width: 100%;
+    height: 15%;
+    align-items: end;
+    justify-content: flex-end;
+}
+
+.btn_uploadFile{
+    display: flex;
+    width: 10%;
+    height: 10%;
+    align-items: flex-end;
+    font-size: 2vw;
+    background-color: transparent;
+    border: transparent;
+    padding-right: 30%;
+}

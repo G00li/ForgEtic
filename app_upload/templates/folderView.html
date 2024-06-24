@@ -2,32 +2,45 @@
 
 {% block 'workView' %}
 
-    <ul>
-      {% for folder in folders %}
-        <div class="folders">
-          <a class="folderName" href="{% url 'folderParent' folder.id %}">{{ folder.name }}</a>
+  <div class = "map">
+    <h1>Home</h1>
+  </div>
 
-          <div class="btns_folder">
-            <form class="formBtnsFolder" method="POST" action="{% url 'rename_folder' folder.id %}">
-              {% csrf_token %}
+  <div class="foldersAndFiles">
+      <ul>
+        {% for folder in folders %}
+          <div class="folders">
+            <a class="folderName" href="{% url 'folderParent' folder.id %}">{{ folder.name }}</a>
 
-              {% if error_folder_id == folder.id %}
-                <div class="error">{{ error_message }}</div>
-              {% elif success_folder_id == folder.id %}
-                <div class="success">{{ success_message }}</div>
-              {% endif %}
+            <div class="btns_folder">
+              <form class="formBtnsFolder" method="POST" action="{% url 'rename_folder' folder.id %}">
+                {% csrf_token %}
 
-              <label>Novo nome</label>
-              <input type="text" name="new_name" placeholder="Insira o novo nome" required />
-              <button type="submit" class="btn_rename">Renomear</button>
-            </form>
+                {% if error_folder_id == folder.id %}
+                  <div class="error">{{ error_message }}</div>
+                {% elif success_folder_id == folder.id %}
+                  <div class="success">{{ success_message }}</div>
+                {% endif %}
 
-            <form method="POST" action="{% url 'delete_folder' folder.id %}">
-              {% csrf_token %}
-              <button class="btn_delete">Deletar</button>
-            </form>
+                <label>Renomear ficheiro</label>
+                <input type="text" name="new_name" placeholder="Insira o novo nome" required />
+                <button type="submit" class="btn_rename">Renomear</button>
+                <input type="hidden" name="next" value="{{ request.path }}">
+              </form>
+
+              <form method="POST" action="{% url 'delete_folder' folder.id %}">
+                {% csrf_token %}
+                <button class="btn_delete">Deletar</button>
+              </form>
+            </div>
           </div>
-        </div>
-      {% endfor %}
-    </ul>
+        {% endfor %}
+
+
+        {%for file in files %}
+          <li>{{file.file.name}}</li>
+        {%endfor%}
+
+      </ul>
+  </div>
 {% endblock %}

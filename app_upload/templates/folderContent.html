@@ -1,38 +1,69 @@
 {% extends "base.html" %}
 
+
 {% block 'workView' %}
 
-    <h1>{{folder}}</h1>
+    <div class = "map">
+        <h1>{{folder}}</h1>
+    </div>
 
-    <ul>
-        {% for folder in folders %}
-            <div class="folders">
-                <a class="folderName" href="{% url 'folderParent' folder.id %}">{{ folder.name }}</a>
-    
-                <div class="btns_folder">
-                    <form class="formBtnsFolder" method="POST" action="{% url 'rename_folder' folder.id %}">
-                        {% csrf_token %}
+    <div class="foldersAndFiles">
+        <ul>
+            {% for folder in folders %}
+                <div class="folders">
+                    <a class="folderName" href="{% url 'folderParent' folder.id %}">{{ folder.name }}</a>
 
-                        {% if error_folder_id == folder.id %}
-                            <div class="error">{{ error_message }}</div>
-                        {% elif success_folder_id == folder.id %}
-                            <div class="success">{{ success_message }}</div>
-                        {% endif %}
+                    <div class="btns_folder">
+                        <form class="formBtnsFolder" method="POST" action="{% url 'rename_folder' folder.id %}">
+                            {% csrf_token %}
 
-                        <label>Novo nome</label>
-                        <input type="text" name="new_name" placeholder="Insira o novo nome" required />
-                        <button type="submit" class="btn_rename">Renomear</button>
-                    </form>
+                            {% if error_folder_id == folder.id %}
+                                <div class="error">{{ error_message }}</div>
+                            {% elif success_folder_id == folder.id %}
+                                <div class="success">{{ success_message }}</div>
+                            {% endif %}
 
-                    <form method="POST" action="{% url 'delete_folder' folder.id %}">
-                        {% csrf_token %}
-                        <button class="btn_delete">Deletar</button>
-                    </form>
+                            <label>Renomear Ficheiro</label>
+                            <input type="text" name="new_name" placeholder="Insira o novo nome" required />
+                            <button type="submit" class="btn_rename">Renomear</button>
+                        </form>
+
+                        <form method="POST" action="{% url 'delete_folder' folder.id %}">
+                            {% csrf_token %}
+                            <button class="btn_delete">Deletar</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        {%endfor%}
-    </ul>
-    
+                
+            {%endfor%}
 
-    
+            {%for file in files %}
+
+                <div class = "divfile">
+
+                    <label class ="labelFileName"> {{file.file.name}}  </label>
+
+                    <div class ="btns_file">
+                        <form class = "formFileRename" action="{%url 'rename_file' file.id %}" method = "POST">
+                            {% csrf_token %}
+
+                            <label>Renomear arquivo</label>
+                            <input type="text", name="new_fileName" placeholder="Insira o novo nome" required>
+                            <button type="submit" class="btn_rename" >Renomear</button>
+
+                        </form>
+
+                        <form  class ="formFileDelete"action="{%url 'delete_file' file.id%}" method="POST">
+                            {% csrf_token %}
+                            <button action="submit" class="btn_delete">Deletar</button>
+
+                        </form>
+                    </div>
+                    
+                </div>
+            {%empty%}
+                <li> Nenhum arquivo encontrado </li>
+            {%endfor%}
+        </ul>
+    </div>
 {%endblock%}
