@@ -17,9 +17,9 @@
                         <form class="formBtnsFolder" method="POST" action="{% url 'rename_folder' folder.id %}">
                             {% csrf_token %}
 
-                            {% if error_folder_id == folder.id %}
+                            {% if error_file_id == file.id %}
                                 <div class="error">{{ error_message }}</div>
-                            {% elif success_folder_id == folder.id %}
+                            {% elif success_file_id == file.id %}
                                 <div class="success">{{ success_message }}</div>
                             {% endif %}
 
@@ -28,10 +28,15 @@
                             <button type="submit" class="btn_rename">Renomear</button>
                         </form>
 
-                        <form method="POST" action="{% url 'delete_folder' folder.id %}">
+                        <div class="divFolderDownload">
+                            <a id="a_foldeDownload" href="{% url 'download_folder' folder.id %}">Download</a>
+                        </div>
+
+                        <form class ="formBtnsDelete" method="POST" action="{% url 'delete_folder' folder.id %}">
                             {% csrf_token %}
                             <button class="btn_delete">Deletar</button>
                         </form>
+
                     </div>
                 </div>
                 
@@ -41,12 +46,19 @@
 
                 <div class = "divfile">
 
-                    <label class ="labelFileName"> {{file.file.name}}  </label>
+                    <label class ="labelFileName"> {{file.name}}  </label>
 
                     <div class ="btns_file">
                         <form class = "formFileRename" action="{%url 'rename_file' file.id %}" method = "POST">
                             {% csrf_token %}
 
+
+                            {% if error_folder_id == folder.id %}
+                                <div class="error">{{ error_message }}</div>
+                            {% elif success_folder_id == folder.id %}
+                                <div class="success">{{ success_message }}</div>
+                            {% endif %}
+          
                             <label>Renomear arquivo</label>
                             <input type="text", name="new_fileName" placeholder="Insira o novo nome" required>
                             <button type="submit" class="btn_rename" >Renomear</button>
@@ -58,6 +70,13 @@
                             <button action="submit" class="btn_delete">Deletar</button>
 
                         </form>
+                       
+
+                        <div class="divFileDownload">
+                            <a class = "btn_download" href="{{file.file.url}}" download="{{file.name}}">Download</a>
+                        </div>
+
+
                     </div>
                     
                 </div>

@@ -9,6 +9,7 @@ urlpatterns = [
     path("folderView/<int:folder_id>", views.getFolderUrl, name="folderParent"),
     path('delete_folder/<int:folder_id>', views.deleteFolder, name='delete_folder'),
     path('rename_folder/<int:folder_id>', views.renameFolder, name='rename_folder'),
+    path('download_folder/<int:folder_id>', views.downloadFolder, name='download_folder'),
 
     path('file/upload', views.uploadFileView, name="uploadFile"),
     path('file/upload/<int:folder_id>', views.uploadFileView, name="uploadFile"),

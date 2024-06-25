@@ -12,22 +12,36 @@
 }
 
 .btns_file{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     width: 100%;
     margin-top: 10px;
 }
 
 
 .labelFileName{
+    display: flex;
     width: 100%;
-    align-self: center;
+    height: 10%;
+    align-items: center;
     font-size: 1.5vw;
 }
 .formFileRename{
     display: flex;
     flex-direction: column;
-    gap: 10px;
     width: 100%;
-    height: 40%;
+    height: 25%;
+}
+
+
+
+.formFileDelete{
+    display: flex;
+    width: 100%;
+    height: 25%;
+    margin-top: 0;
+    height: 2%;
 }
 
 input[type="text"] {
@@ -36,6 +50,38 @@ input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 3px;
 }
+
+.divFileDownload {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+    width: 100%;
+    height: 25%;
+}
+
+
+.btn_download {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    width: 90%;
+    height: 40%; 
+    font-size: medium;
+}
+
+.btn_download:hover {
+    background-color: var(--button-hover-bg-color); /* Add this if you have a hover color */
+}
+
+
 
 .btn_rename, .btn_delete {
     background-color: var(--button-bg-color);

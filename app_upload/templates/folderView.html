@@ -28,7 +28,13 @@
                 <input type="hidden" name="next" value="{{ request.path }}">
               </form>
 
-              <form method="POST" action="{% url 'delete_folder' folder.id %}">
+                        <div class="divFolderDownload">
+                            <a id="a_foldeDownload" href="{% url 'download_folder' folder.id %}">Download</a>
+                        </div>
+
+
+
+              <form class ="formBtnsDelete" method="POST" action="{% url 'delete_folder' folder.id %}">
                 {% csrf_token %}
                 <button class="btn_delete">Deletar</button>
               </form>
@@ -38,9 +44,47 @@
 
 
         {%for file in files %}
-          <li>{{file.file.name}}</li>
-        {%endfor%}
 
-      </ul>
+          <div class = "divfile">
+
+              <label class ="labelFileName"> {{file.name}}  </label>
+
+              <div class ="btns_file">
+                  <form class = "formFileRename" action="{%url 'rename_file' file.id %}" method = "POST">
+                      {% csrf_token %}
+
+
+                      {% if error_folder_id == folder.id %}
+                          <div class="error">{{ error_message }}</div>
+                      {% elif success_folder_id == folder.id %}
+                          <div class="success">{{ success_message }}</div>
+                      {% endif %}
+    
+                      <label>Renomear arquivo</label>
+                      <input type="text", name="new_fileName" placeholder="Insira o novo nome" required>
+                      <button type="submit" class="btn_rename" >Renomear</button>
+
+                  </form>
+
+                  <form  class ="formFileDelete"action="{%url 'delete_file' file.id%}" method="POST">
+                      {% csrf_token %}
+                      <button action="submit" class="btn_delete">Deletar</button>
+
+                  </form>
+                
+
+                  <div class="divFileDownload">
+                      <a class = "btn_download" href="{{file.file.url}}" download="{{file.name}}">Download</a>
+                  </div>
+
+
+              </div>
+              
+          </div>
+      {%empty%}
+          <li> Nenhum arquivo encontrado </li>
+      {%endfor%}
+
+    </ul>
   </div>
 {% endblock %}

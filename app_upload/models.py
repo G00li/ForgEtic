@@ -9,6 +9,7 @@ class Folder(models.Model):
     name = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="folders")
     parent_folder= models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='subfolders')
+    
 
 
     def __str__(self):
@@ -20,9 +21,10 @@ class Folder(models.Model):
 
 
 class File (models.Model):
-    file = models.FileField(upload_to="files/", blank=False, verbose_name="file")
+    name = models.CharField(max_length=50, default='')
+    file = models.FileField(upload_to="", blank=False, verbose_name="file")
     user = models.ForeignKey(User, blank= False, on_delete=models.CASCADE, verbose_name="file_User")
     parent_folder = models.ForeignKey(Folder, blank=True, null=True, on_delete=models.CASCADE, verbose_name= "parent_folder")
 
     def __str__(self):
-        return self.file.name.split("/")[-1]
+        return self.file.name

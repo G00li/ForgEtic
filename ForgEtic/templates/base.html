@@ -75,19 +75,7 @@
 
                                     <form class = "uploadFile" action="{% if folder %}{%url 'uploadFile' folder.id %}{%else%}{%url 'uploadFile'%}{%endif%}" method="POST" enctype="multipart/form-data">
                                         {% csrf_token %}
-                                        {% if error_message %}
-                                            <div style="color: red;">
-                                                {{ error_message }}
-                                            </div>
-                                        {% endif %}
-
-                                        {% if success_message %}
-                                            <div style="color: green;">
-                                                {{ success_message }}
-                                            </div>
-                                        {% endif %}
                                         
-
                                         <label class = "inputFile" for = "file">Escolher arquivo</label>
                                         <input  class = "escolherFile" id="file" type="file" name="file">
                                         <div class = "btns_confirmacao">

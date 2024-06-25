@@ -68,10 +68,40 @@ ul {
 
 /* Botões de cada pasta */
 .btns_folder {
+    display: flex;
     width: 100%;
     margin-top: 10px;
+    align-items: center;
+    flex-direction: column;
 }
 
+
+.formBtnsDelete{
+    display: flex;
+    height: 30%;
+    margin-top: 0;
+}
+
+.divFolderDownload{
+    display: flex;
+    width: 90%;
+    height: 13%;
+    margin-top: 7%;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--button-bg-color);
+    border-radius: 3px;
+}
+
+a#a_folderDownload{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    color: red;
+}
 
 a.folderName{
     align-self: center;
@@ -80,7 +110,7 @@ a.folderName{
 }
 
 /* Estilo dos botões */
-.btn_rename, .btn_delete {
+.btn_rename, .btn_delete  {
     background-color: var(--button-bg-color);
     color: var(--button-text-color);
     border: none;
