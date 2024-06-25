@@ -20,12 +20,17 @@ from django.utils.text import slugify
 @login_required(login_url="/login/")
 def folder_view(request, folder_id = None):
 
+    user = request.user
+
     if folder_id:
-        parent_folder = Folder.objects.get(id=folder_id)
+        parent_folder = get_object_or_404(Folder, id=folder_id, user=user)
         folders = Folder.objects.filter(user=request.user, parent_folder= parent_folder)
+        files = File.objects.filter(user=user, parent_folder=parent_folder)
 
     else:   
         folders = Folder.objects.filter(user=request.user, parent_folder = None)
+        files = File.objects.filter(user=user, parent_folder=None)
+        
 
 
 
@@ -52,15 +57,18 @@ def folder_view(request, folder_id = None):
 
 
 
-    return render(request,'folderView.html', {
+    context = {
         'folders': folders,
+        'files': files,
         'current_folder_id': current_folder_id,
         'error_folder_id': error_folder_id,
         'error_message': error_message,
         'success_folder_id': success_folder_id,
         'success_message': success_message,
         
-        })
+        }
+    
+    return render(request, 'folderView.html', context)
         
 
 
@@ -191,10 +199,21 @@ def uploadFileView(request, folder_id=None):
     current_folder = None
     error_folder_id = success_folder_id = None
     error_message = success_message = None
+    files = File.objects.filter(user=user, parent_folder=current_folder)
 
 
     if request.method == 'POST':
+
         file = request.FILES.get('file')
+
+        fileInRoot = File.objects.filter(user=user, parent_folder= None)
+
+        print("Files in root: ", fileInRoot)
+
+        FolderInRoot = Folder.objects.filter(user=user, parent_folder=None)
+        print("Folders in Root: ", FolderInRoot)
+
+
 
         if folder_id is not None:
             current_folder = Folder.objects.get(id=folder_id)
@@ -240,33 +259,28 @@ def uploadFileView(request, folder_id=None):
             return redirect('folderParent', folder_id=folder_id)
 
 
-    if messages.get_messages(request):
-        for message in messages.get_messages(request):
-            parts = message.message.split(":")
-            if len(parts):
-                if 'Erro ao carregar o arquivo' in message.message:
-                    try:
-                        error_folder_id = int(parts[-1].strip())
-                        error_message = parts[0].strip()
-                    except ValueError:
-                        pass  
-                elif "Arquivo carregado com sucesso" in message.message:
-                    try:
-                        success_folder_id = int(parts[-1].strip())
-                        success_message = parts[0].strip()
-                    except ValueError:
-                        pass 
 
-    files = File.objects.filter(user=user, parent_folder=current_folder)
 
-    return render(request, 'folderContent.html', {
-        'files': files,
-        'current_folder_id': folder_id,
-        'error_folder_id': error_folder_id,
-        'error_message': error_message,
-        'success_folder_id': success_folder_id,
-        'success_message': success_message,
-    })
+    # if folder_id is None:
+    #     return render(request, 'folderView.html', {
+    #         'files': files,
+    #         'current_folder_id': folder_id,
+    #         'error_folder_id': error_folder_id,
+    #         'error_message': error_message,
+    #         'success_folder_id': success_folder_id,
+    #         'success_message': success_message,
+    #     })
+
+
+    # else:
+    #     return render(request, 'folderContent.html', {
+    #         'files': files,
+    #         'current_folder_id': folder_id,
+    #         'error_folder_id': error_folder_id,
+    #         'error_message': error_message,
+    #         'success_folder_id': success_folder_id,
+    #         'success_message': success_message,
+    #     })
 
 
 @login_required(login_url="/login/")
