@@ -8,7 +8,7 @@ poetry-update:
 
 
 create-admin-automatico: 
-	python3.12 manage.py createsuperuser --username admin --email admin@example.com --password admin
+	python3.12 manage.py createsuperuser --username admin --email admin@example.com 
 
 
 create-admin-manual:
