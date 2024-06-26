@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "forgetic"
-version = "1.1.0a0"
+version = "1.1.1a0"
 description = "Projeto Etic"
 authors = ["Gooli <leandro.gooli@gmail.com>"]
 license = "MIT License"
