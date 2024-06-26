@@ -8,7 +8,7 @@ poetry-update:
 
 
 create-admin-automatico: 
-	python3.12 manage.py createsuperuser --username admin --email admin@example.com
+	python3.12 manage.py createsuperuser --username admin --email admin@example.com --password admin
 
 
 create-admin-manual:
@@ -27,3 +27,8 @@ up:
 	pip install poetry
 	pip install django
 	docker-compose up --build
+
+init:
+	make deploy-migrate
+	make create-admin-automatico
+	make up
