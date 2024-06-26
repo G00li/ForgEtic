@@ -6,7 +6,7 @@
     color: inherit;
 }
 
-.svg{
+.svgFolder{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,7 +23,7 @@
 .folder-name {
     font-size: 24px;
     font-weight: bold;
-    color: #333;
+    color: var(--text-color-primary);
     text-align: center;
 }
 
@@ -37,7 +37,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 5%;
+    margin-top: 10%;
 }
 
 .formBtnsFolder,
@@ -112,7 +112,6 @@
 .folder-icon {
     width: 150px;
     height: 150px;
-    margin-bottom: 5px; /* Espaçamento entre o ícone e o nome */
 }
 
 .folder-name {
@@ -121,6 +120,4 @@
     font-weight: bold;
     color: #333;
     text-align: center;
-    /* margin-top: 60%; */
-    /* padding-left: 50%; */
 }

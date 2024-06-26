@@ -6,7 +6,7 @@
     justify-content: right;
     gap: 10px;
     width: 100%;
-    height: 90dvh;
+    height: 100vh;
     background-color: var(--primary-color);
 }
 

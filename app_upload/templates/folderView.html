@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block 'workView' %}
+
+  <div class = "map">
+    <h1>Home</h1>
+  </div>
+
+  <div class="foldersAndFiles">
+      <ul class = "ulFoldersFiles">
+        {% for folder in folders %}
+          <div class="folders">
+            <a class="folder-link" href="{% url 'folderParent' folder.id %}">
+              <div class="folder-icon">
+                  <svg  class = "svgFolder" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100" height="100" viewBox="0 0 256 256" xml:space="preserve">
+                      <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+                          <path d="M 73.538 35.162 l -52.548 1.952 c -1.739 0 -2.753 0.651 -3.232 2.323 L 6.85 76.754 c -0.451 1.586 -2.613 2.328 -4.117 2.328 h 0 C 1.23 79.082 0 77.852 0 76.349 l 0 -10.458 V 23.046 v -2.047 v -6.273 c 0 -2.103 1.705 -3.808 3.808 -3.808 h 27.056 c 1.01 0 1.978 0.401 2.692 1.115 l 7.85 7.85 c 0.714 0.714 1.683 1.115 2.692 1.115 H 69.73 c 2.103 0 3.808 1.705 3.808 3.808 v 1.301 C 73.538 26.106 73.538 35.162 73.538 35.162 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(224,173,49); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                          <path d="M 2.733 79.082 L 2.733 79.082 c 1.503 0 2.282 -1.147 2.733 -2.733 l 10.996 -38.362 c 0.479 -1.672 2.008 -2.824 3.748 -2.824 h 67.379 c 1.609 0 2.765 1.546 2.311 3.09 L 79.004 75.279 c -0.492 1.751 -1.571 3.818 -3.803 3.803 C 75.201 79.082 2.733 79.082 2.733 79.082 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,200,67); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                      </g>
+                  </svg>
+              </div>
+              <div class="folder-name">{{ folder.name }}</div>
+            </a>
+  {% comment %} <a class="folderName" href="{% url 'folderParent' folder.id %}">{{ folder.name }}</a> {% endcomment %}
+
+            <div class="btns_folder">
+              <form class="formBtnsFolder" method="POST" action="{% url 'rename_folder' folder.id %}">
+                {% csrf_token %}
+
+                {% if error_folder_id == folder.id %}
+                  <div class="error">{{ error_message }}</div>
+                {% elif success_folder_id == folder.id %}
+                  <div class="success">{{ success_message }}</div>
+                {% endif %}
+                
+                <label>Renomear ficheiro</label>
+                <input type="text" name="new_name" placeholder="Insira o novo nome" required />
+                <button type="submit" class="btn_rename">Renomear</button>
+                <input type="hidden" name="next" value="{{ request.path }}">
+              </form>
+
+                        <div class="divFolderDownload">
+                            <a id="a_foldeDownload" href="{% url 'download_folder' folder.id %}">Download</a>
+                        </div>
+
+
+
+              <form class ="formBtnsDelete" method="POST" action="{% url 'delete_folder' folder.id %}">
+                {% csrf_token %}
+                <button class="btn_delete">Deletar</button>
+              </form>
+            </div>
+          </div>
+        {% endfor %}
+
+
+        {%for file in files %}
+
+          <div class = "divfile">
+
+            <div class="file-icon">
+              <svg class = "svgFile" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="130" height="160" viewBox="0 0 256 256" xml:space="preserve">
+                <defs>
+                </defs>
+                <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+                  <path d="M 9.602 1 v 88 h 14.579 c 1.277 -2.66 3.987 -4.501 7.134 -4.501 S 37.173 86.34 38.45 89 h 13.1 c 1.277 -2.66 3.987 -4.501 7.134 -4.501 c 3.147 0 5.858 1.841 7.134 4.501 h 14.579 V 1 H 9.602 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(230,211,65); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                  <path d="M 80.397 90 H 65.818 c -0.385 0 -0.735 -0.221 -0.901 -0.567 c -1.164 -2.427 -3.553 -3.934 -6.232 -3.934 s -5.068 1.508 -6.233 3.934 C 52.285 89.779 51.935 90 51.55 90 h -13.1 c -0.385 0 -0.735 -0.221 -0.901 -0.567 c -1.165 -2.427 -3.553 -3.934 -6.233 -3.934 s -5.068 1.507 -6.233 3.934 C 24.917 89.779 24.566 90 24.181 90 H 9.602 c -0.552 0 -1 -0.447 -1 -1 V 1 c 0 -0.552 0.448 -1 1 -1 h 70.795 c 0.553 0 1 0.448 1 1 v 88 C 81.397 89.553 80.95 90 80.397 90 z M 66.422 88 h 12.976 V 2 H 10.602 v 86 h 12.976 c 1.577 -2.754 4.547 -4.501 7.738 -4.501 s 6.161 1.747 7.738 4.501 h 11.893 c 1.578 -2.754 4.549 -4.501 7.738 -4.501 C 61.875 83.499 64.845 85.246 66.422 88 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                  <path d="M 66.654 21.435 H 23.346 c -0.552 0 -1 -0.448 -1 -1 s 0.448 -1 1 -1 h 43.308 c 0.553 0 1 0.448 1 1 S 67.207 21.435 66.654 21.435 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                  <path d="M 66.654 35.12 H 23.346 c -0.552 0 -1 -0.448 -1 -1 s 0.448 -1 1 -1 h 43.308 c 0.553 0 1 0.448 1 1 S 67.207 35.12 66.654 35.12 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                  <path d="M 66.654 48.804 H 23.346 c -0.552 0 -1 -0.447 -1 -1 s 0.448 -1 1 -1 h 43.308 c 0.553 0 1 0.447 1 1 S 67.207 48.804 66.654 48.804 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                  <path d="M 66.654 62.488 H 49.347 c -0.553 0 -1 -0.447 -1 -1 s 0.447 -1 1 -1 h 17.308 c 0.553 0 1 0.447 1 1 S 67.207 62.488 66.654 62.488 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                </g>
+              </svg> 
+            </div>
+
+              <label class ="labelFileName">{{file.name}}</label>
+
+              <div class ="btns_file">
+                  <form class = "formFileRename" action="{%url 'rename_file' file.id %}" method = "POST">
+                      {% csrf_token %}
+    
+                      <label>Renomear arquivo</label>
+                      <input type="text", name="new_fileName" placeholder="Insira o novo nome" required>
+                      <button type="submit" class="btn_rename" >Renomear</button>
+
+                  </form>
+
+                  <form  class ="formFileDelete"action="{%url 'delete_file' file.id%}" method="POST">
+                      {% csrf_token %}
+                      <button action="submit" class="btn_delete">Deletar</button>
+
+                  </form>
+                
+
+                  <div class="divFileDownload">
+                      <a class = "btn_download" href="{{file.file.url}}" download="{{file.name}}">Download</a>
+                  </div>
+
+
+              </div>
+              
+          </div>
+        {%empty%}
+          <li> Nenhum arquivo encontrado </li>
+        {%endfor%}
+
+    </ul>
+  </div>
+{% endblock %}
