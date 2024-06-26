@@ -12,11 +12,14 @@ import zipfile
 from django.conf import settings
 from django.utils.text import slugify
 
+from ForgEtic.middlewares import block_superuser
+
 
 
 
 # _______________FOLDER________________ 
 
+@block_superuser
 @login_required(login_url="/login/")
 def folder_view(request, folder_id = None):
 
@@ -71,7 +74,7 @@ def folder_view(request, folder_id = None):
     return render(request, 'folderView.html', context)
         
 
-
+@block_superuser
 @login_required(login_url="/login/")
 def newFolder (request, folder_id = None): 
     if request.method == 'POST':
@@ -105,6 +108,8 @@ def newFolder (request, folder_id = None):
 
     return redirect (request.META.get('HTTP_REFERER', 'folderView'))   
 
+
+@block_superuser
 def deleteFolder(request, folder_id):
 
     folder = get_object_or_404(Folder, pk=folder_id)
@@ -116,6 +121,7 @@ def deleteFolder(request, folder_id):
     return redirect('folderView')
 
 
+@block_superuser
 def renameFolder (request, folder_id):
 
     folder = get_object_or_404(Folder, pk=folder_id, user=request.user)
@@ -137,7 +143,7 @@ def renameFolder (request, folder_id):
     return redirect('folderView')
 
 
-
+@block_superuser
 @login_required(login_url="/login/")
 def downloadFolder(request, folder_id): 
     current_folder = get_object_or_404(Folder, id=folder_id, user =request.user)
@@ -173,7 +179,7 @@ def downloadFolder(request, folder_id):
 
 
 
-
+@block_superuser
 @login_required(login_url="/login/")
 def getFolderUrl(request, folder_id):
 
@@ -192,7 +198,7 @@ def getFolderUrl(request, folder_id):
 
 
 # __________________ FILE ____________
-
+@block_superuser
 @login_required(login_url="/login/")
 def uploadFileView(request, folder_id=None):
     user = request.user
@@ -258,31 +264,7 @@ def uploadFileView(request, folder_id=None):
         else:
             return redirect('folderParent', folder_id=folder_id)
 
-
-
-
-    # if folder_id is None:
-    #     return render(request, 'folderView.html', {
-    #         'files': files,
-    #         'current_folder_id': folder_id,
-    #         'error_folder_id': error_folder_id,
-    #         'error_message': error_message,
-    #         'success_folder_id': success_folder_id,
-    #         'success_message': success_message,
-    #     })
-
-
-    # else:
-    #     return render(request, 'folderContent.html', {
-    #         'files': files,
-    #         'current_folder_id': folder_id,
-    #         'error_folder_id': error_folder_id,
-    #         'error_message': error_message,
-    #         'success_folder_id': success_folder_id,
-    #         'success_message': success_message,
-    #     })
-
-
+@block_superuser
 @login_required(login_url="/login/")
 def deleteFile(request, file_id): 
     file = get_object_or_404(File, id=file_id)
@@ -293,6 +275,7 @@ def deleteFile(request, file_id):
 
     return redirect(request.META.get('HTTP_REFERER', 'folderView'))
 
+@block_superuser
 @login_required(login_url="/login/")
 def renameFile (request, file_id):
     file = get_object_or_404(File, id=file_id)
