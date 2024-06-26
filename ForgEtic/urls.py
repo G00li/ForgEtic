@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
 
-# from ForgEtic.views import LoginCheck
 from ForgEtic.views import IndexView
 
 from django.conf import settings
@@ -10,7 +9,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("", IndexView.as_view(), name='home'),
     path("auth/", include('app_usuarios.urls'), name='usuarios'),
-    path("Home/", include('app_upload.urls'), name = "file"),
+    path("Home/", include('app_upload.urls'), name = 'file'),
     path("admin/", admin.site.urls),
 ]
 

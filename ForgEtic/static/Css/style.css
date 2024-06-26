@@ -236,14 +236,15 @@ body{
     display: flex;
     height: 5%;
     width: 100%;
-    margin-bottom: 2%;
-    font-size: larger;
+    margin: 1%;
+    font-size: x-large;
 }
 
 .foldersAndFiles{
     display: flex;
     width: 100%;
     height: 100vh;
+    margin-left: 2%;
 }
 
 

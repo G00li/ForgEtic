@@ -22,7 +22,7 @@
             <section class = "home-nav">
  
                 {%block 'navBar'%}
-                    <a class = "name-logo" href= "{% url 'home'%}">ForgEtic</a>
+                    <a class = "name-logo" href= "{% url 'folderView' %}">ForgEtic</a>
 
                     {% if user.is_authenticated %}
                         <div class = "logado">
@@ -52,7 +52,7 @@
                                 <section class = "side-bar">
                                     <h1> Barra lateral </h1>
                                     <div class = "btns">
-                                        <a class = "btn_upload" href = "{% url 'folderView'%}">All</a>
+                                        <a class = "btn_upload" href = "{% url 'folderView'%}">Inicio</a>
 
                                         
                                         {% if messages %}

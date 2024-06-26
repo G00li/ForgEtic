@@ -188,13 +188,24 @@ def getFolderUrl(request, folder_id):
     folders = Folder.objects.filter(user=request.user, parent_folder=current_folder)
     files = File.objects.filter(user=request.user, parent_folder = current_folder)
 
+    folder_path = get_folder_path(current_folder)
 
     return render(request, 'folderContent.html',{
         'folder':current_folder,
         'folders':folders,
         'files':files,
         'current_folder_id': folder_id,
+        'folder_path': folder_path,
   }) 
+
+
+def get_folder_path(folder):
+    path = []
+    current_folder = folder
+    while current_folder:
+        path.insert(0, current_folder)
+        current_folder = current_folder.parent_folder
+    return path
 
 
 # __________________ FILE ____________

@@ -1,12 +1,9 @@
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as login_django
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
-from app_usuarios import urls
 
 
 
@@ -33,7 +30,7 @@ def cadastro(request):
             return render(request, 'cadastro.html')
             
 
-        user = User.objects.create_user(username=username, email=email, password=senha) #//NOTE - Criando o user e associando seus atributos
+        user = User.objects.create_user(username=username, email=email, password=senha) 
         user.save()
 
         return redirect('login')
@@ -54,7 +51,7 @@ def login(request):
                 return redirect(reverse('admin:index'))
             else:
                 login_django(request, user)
-                return redirect('home')
+                return redirect('/Home/')
         
         else:
             messages.info(request, 'Erro ao realizar login. Verifique seu username e senha.')
