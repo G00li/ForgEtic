@@ -21,7 +21,6 @@
               </div>
               <div class="folder-name">{{ folder.name }}</div>
             </a>
-  {% comment %} <a class="folderName" href="{% url 'folderParent' folder.id %}">{{ folder.name }}</a> {% endcomment %}
 
             <div class="btns_folder">
               <form class="formBtnsFolder" method="POST" action="{% url 'rename_folder' folder.id %}">
@@ -100,8 +99,6 @@
               </div>
               
           </div>
-        {%empty%}
-          <li> Nenhum arquivo encontrado </li>
         {%endfor%}
 
     </ul>

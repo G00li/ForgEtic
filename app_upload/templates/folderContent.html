@@ -15,10 +15,6 @@
         {% endfor %}
     </div>
 
-    {% comment %} <div class = "map">
-        <h1>{{folder}}</h1>
-    </div> {% endcomment %}
-
     <div class="foldersAndFiles">
         <ul>
             {% for folder in folders %}
@@ -119,8 +115,6 @@
                     </div>
                     
                 </div>
-            {%empty%}
-                <li> Nenhum arquivo encontrado </li>
             {%endfor%}
         </ul>
     </div>
