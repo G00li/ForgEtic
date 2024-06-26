@@ -196,7 +196,7 @@ def getFolderUrl(request, folder_id):
         'files':files,
         'current_folder_id': folder_id,
         'folder_path': folder_path,
-  }) 
+    }) 
 
 
 def get_folder_path(folder):
@@ -281,6 +281,7 @@ def deleteFile(request, file_id):
     file = get_object_or_404(File, id=file_id)
 
     if request.method == "POST":
+        file.file.delete()
         file.delete()
         messages.success(request, "Arquivo deletado com sucesso")
 

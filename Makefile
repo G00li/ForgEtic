@@ -7,8 +7,12 @@ poetry-update:
 	poetry update
 
 
-create-admin: 
+create-admin-automatico: 
 	python3.12 manage.py createsuperuser --username admin --email admin@example.com
+
+
+create-admin-manual:
+	python3.12 manage.py createsuperuser
 
 run-docker: 
 	docker compose up --build  
