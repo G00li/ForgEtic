@@ -1,143 +1,126 @@
-:root {
-    --folder-bg-color: #4c4c4c; /* Cinza um pouco escuro */
-    --folder-text-color: #ffffff;
-    --button-bg-color: #d3d3d3;
-    --button-hover-bg-color: #b0b0b0;
-    --button-text-color: #000000;
+.folder-link {
+    display: flex;
+    width: 150px;
+    height: 150px;
+    text-decoration: none;
+    color: inherit;
 }
 
-/* Formulário de visualização das pastas */
-.folderViewForm {
+.svg{
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 1%;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 0px;
-    box-sizing: border-box;
 }
 
-/* Lista de pastas e arquivos */
-ul {
+.folder-icon {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    width: 100%;
-    height: 100;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+    width: 200px;
+    height: 200px;
 }
 
-/* Cada pasta */
+.folder-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
 .folders {
-    display: flex;
-    flex-direction: column;
-    width: 25%;
-    height: 50%;
-    margin: 1%;
-    background-color:yellowgreen;
-    color: var(--folder-text-color);
-    border-radius: 5px;
-    padding: 10px;
-    box-sizing: border-box;
+    display: inline-block;
+    text-align: center;
+    margin: 15px;
 }
 
-
-@media (max-width: 1024px) {
-    .folders {
-        width: calc(50% - 20px); /* 2 pastas por linha em telas menores */
-    }
-}
-
-@media (max-width: 768px) {
-    .folders {
-        width: calc(100% - 20px); /* 1 pasta por linha em telas ainda menores */
-    }
-}
-
-.btns_folder form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    height: 40%;
-}
-
-/* Botões de cada pasta */
 .btns_folder {
     display: flex;
-    width: 100%;
-    margin-top: 10px;
-    align-items: center;
     flex-direction: column;
-}
-
-
-.formBtnsDelete{
-    display: flex;
-    height: 30%;
-    margin-top: 0;
-}
-
-.divFolderDownload{
-    display: flex;
-    width: 90%;
-    height: 13%;
-    margin-top: 7%;
     align-items: center;
-    justify-content: center;
-    background-color: var(--button-bg-color);
-    border-radius: 3px;
+    margin-top: 5%;
 }
 
-a#a_folderDownload{
-    display: flex;
+.formBtnsFolder,
+.formBtnsDelete,
+.divFolderDownload {
+    margin-top: 10px;
+}
+
+.formBtnsFolder input[type="text"],
+.formBtnsFolder button,
+.divFolderDownload a,
+.formBtnsDelete button {
     width: 100%;
-    height: 100%;
-    text-decoration: none;
-    align-items: center;
-    justify-content: center;
-    color: red;
-}
-
-a.folderName{
-    align-self: center;
-    font-size: 24px;
-
-}
-
-/* Estilo dos botões */
-.btn_rename, .btn_delete  {
-    background-color: var(--button-bg-color);
-    color: var(--button-text-color);
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 3px;
-    transition: background-color 0.3s;
-}
-
-.btn_rename:hover, .btn_delete:hover {
-    background-color: var(--button-hover-bg-color);
-}
-
-/* Inputs */
-input[type="text"] {
     padding: 8px;
-    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.formBtnsFolder input[type="text"] {
     border: 1px solid #ccc;
-    border-radius: 3px;
+    border-radius: 4px;
+}
+
+.formBtnsFolder button{
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 
+.formBtnsFolder button:hover{
+    background-color: #0056b3;
+}
 
-/* ___________________ MEssages __________________ */
 
-.error{
-    color: red;
-    size: 16px;
+.formBtnsDelete button{
+    background-color: #db0202;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
+.formBtnsDelete button:hover {
+    background-color: #ac0202;
+
+}
+
+
+.divFolderDownload a {
+    display: block;
+    text-align: center;
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.divFolderDownload a:hover {
+    background-color: #218838;
+}
+
+.folder-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.folder-icon {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 5px; /* Espaçamento entre o ícone e o nome */
+}
+
+.folder-name {
+    display: flex;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    /* margin-top: 60%; */
+    /* padding-left: 50%; */
 }

@@ -23,4 +23,3 @@ up:
 	pip install poetry
 	pip install django
 	docker-compose up --build
-

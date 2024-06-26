@@ -6,6 +6,7 @@ from django.contrib.auth import login as login_django
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
+from app_usuarios import urls
 
 
 
@@ -91,9 +92,3 @@ def resetPassword(request):
 def user_logout (request):
     logout(request)
     return redirect('home')
-
-
-
-@login_required(login_url="/login/") #REVIEW - Fazendo a verificação se o cliente está logado
-def homePage (request): 
-        return HttpResponse('plataforma')
