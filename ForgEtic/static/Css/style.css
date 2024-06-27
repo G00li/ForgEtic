@@ -233,10 +233,14 @@ body{
 }
 
 .map{
+    position: fixed;
+    top: 3;
+    left: 3;
+    background-color: var(--primary-color);
+    z-index: 999;
     display: flex;
     height: 5%;
     width: 100%;
-    margin: 1%;
     font-size: x-large;
 }
 
