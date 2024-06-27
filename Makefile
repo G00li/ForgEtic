@@ -23,12 +23,12 @@ runserver:
 Danger:
 	python3.12 manage.py flush 
 
-up:
+install:
 	pip install poetry
 	pip install django
-	docker-compose up --build
 
 init:
+	make install
 	make deploy-migrate
 	make create-admin-automatico
-	make up
+	make run-docker
