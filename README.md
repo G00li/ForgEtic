@@ -1,7 +1,7 @@
-#Bem vindo ao ForgEtic! 
+# Bem vindo ao ForgEtic! 
 
 
-##Nosso objetivo 🎯: 
+## Nosso objetivo 🎯: 
 
 "Ter seus arquivos importantes sempre à mão pode fazer toda a diferença na sua produtividade e tranquilidade. Com ForgEtic, você tem a certeza de que seus documentos, fotos e vídeos estão sempre disponíveis, onde quer que você esteja.Esqueça as preocupações com a segurança e a acessibilidade dos seus arquivos – o ForgEtic está aqui para simplificar sua vida digital"
 
@@ -75,13 +75,11 @@ O projeto é dividido em 1 pasta projeto e 2 apps:
    Esta pasta é a root do projeto, onde está o ficheiro settings.py com toda a definição de utilização do Django. Além disso, toda a estrutura base do html se encontra no ficheiro Template, dividido em base.html e index.html. 
    
    **HTML:**
-
-O base.html é onde se encontra todo o esqueleto do site, definindo suas alturas e larguras. 
+	   O base.html é onde se encontra todo o esqueleto do site, definindo suas alturas e larguras. 
 	   O index.html é uma extensão do bloco 'semLogin' do base.html. Nesse html específico, é onde se encontra a pagina inicial de login / register do utilizador. 
 
 **Static/Css:**
-
-é onde contem toda a estilização do projeto. 
+	é onde contem toda a estilização do projeto. 
 	subdividido em 4 pastas, cada uma com a sua estilização específica: 
 	- File.css -> Css responsável pela estilização dos Files
 	- Folder.css -> Css responsável pela estilização do Folders
@@ -94,13 +92,11 @@ Assim como o folder ForgEtic, a app_usuário, como o próprio nome diz, é uma a
 
 
  **HTML**
-
 Nos templates, constam todos os Htmls necessários para o login, Sign Up e Reset Password do utilizador. 
 Todos os htmls estendem do html raiz, que é o base.html, onde, através do Jinja2, é possível exibir o código de forma automática dependendo do botão que o utilizador escolher.
 
 
 **Views/ Urls**
-
 Todas a parte lógica do programa se encontram em funções no file `Views.py`, onde eles se comunicam com as urls existente no file `Urls.py` e inserem a lógica no Html através do name da path no url (onde basicamente são "variáveis"). 
 
 
