@@ -130,10 +130,16 @@
     margin-left: 65%;
 }
 
+.map{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    align-items: center;
+}
+
 .map a{
-    padding-left: 2px;
-    margin-left: 2px;
-    margin-right: 4px;
+    padding: 5px;
+    white-space: nowrap;
 }
 
 .div-renomear{

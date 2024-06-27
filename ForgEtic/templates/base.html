@@ -52,6 +52,7 @@
                             {% block 'SideBar' %}
                                 <section class = "side-bar">
                                     <div class = "btns">
+
                                         {% if messages %}
                                             {% for message in messages %}
                                                 <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
@@ -59,6 +60,7 @@
                                                 </div>
                                             {% endfor %}
                                         {% endif %}
+                                        
                                         <div class = "buscar">
                                             <form class="search-form">
                                                 <label class="search-input">Buscar:</label>

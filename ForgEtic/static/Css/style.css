@@ -81,6 +81,12 @@ body{
     align-items: center;
 }
 
+.btn_login a:hover{
+    background-color: rgb(124, 124, 124);
+    color: whitesmoke;
+
+}
+
 .logado{
     display: flex;
     justify-content: flex-end;
@@ -103,6 +109,11 @@ body{
     text-decoration: none;
     border-radius: 10px;
     cursor: pointer;  
+}
+
+.logado a:hover{
+    background-color: rgb(124, 124, 124);
+    color: whitesmoke;
 }
 
 .divUserName{

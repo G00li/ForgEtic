@@ -6,11 +6,11 @@
 
 
     <div class="map">
-        <a href="{% url 'folderView'%}">Home-</a>
+        <a href="{% url 'folderView'%}">Home - </a>
         {% for folder in folder_path %}
             <a href="{% url 'folderParent' folder.id %}">{{ folder.name }}</a>
             {% if not forloop.last %}
-                 - 
+                 -
             {% endif %}
         {% endfor %}
     </div>
