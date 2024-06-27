@@ -1,10 +1,5 @@
 
 :root {
-    --folder-bg-color: #4c4c4c; /* Cinza um pouco escuro */
-    --folder-text-color: #ffffff;
-    --button-bg-color: #d3d3d3;
-    --button-hover-bg-color: #b0b0b0;
-    --button-text-color: #000000;
 
     --primary-color: #C2D3DF;
     --secondary-color: #e2e4ed;
@@ -269,7 +264,7 @@ body{
 
 
 
-/* ________________________________ FORMS ___________________________ */
+/* ________________________________ FORMS - SIDE BAR ___________________________ */
 
 
 .ClassFolderName{
@@ -283,7 +278,7 @@ body{
 .uploadFile{
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 100%;
     height: 30%;
     gap:10px ;
 }
@@ -296,11 +291,12 @@ body{
     display: flex;
     width: 100%;
     height: 12%;
-    background-color: #0b6dd6;
+    background-color: whitesmoke;
     font-size: large;
     justify-content: center;
     align-items: center;
     border-radius: 15px;
+    border: 2px solid rgb(88, 87, 87);
     cursor: pointer;
 }
 
@@ -321,4 +317,67 @@ body{
     background-color: transparent;
     border: transparent;
     padding-right: 30%;
+}
+
+
+.newFolder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: rgb(164, 164, 164);
+    cursor: pointer;
+}
+
+.btn_uploadFile2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 70%;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: rgb(164, 164, 164);
+    cursor: pointer;
+}
+
+
+.btns_confirmacao button:hover{
+    background-color: rgb(99, 99, 99);
+
+}
+
+.inputNovaPasta{
+    margin-top: 3%;
+}
+
+
+
+#search-form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+/* _______________________________ LOGIN ____________________________ */
+
+.inputNameLogin{
+    height: 8%;
+    margin-bottom: 7%;
+    border-radius: 10px;
+    padding: 5%;
 }

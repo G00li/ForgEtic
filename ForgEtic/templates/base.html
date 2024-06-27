@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="{% static '../static/Css/initialPage.css' %}">
         <link rel="stylesheet" href="{% static '../static/Css/folder.css' %}">
         <link rel="stylesheet" href="{% static '../static/Css/file.css' %}">
+        <script src="{% static "busca.js" %}}"></script>
 
     </head>
 
@@ -52,9 +53,6 @@
                                 <section class = "side-bar">
                                     <h1> Barra lateral </h1>
                                     <div class = "btns">
-                                        <a class = "btn_upload" href = "{% url 'folderView'%}">Inicio</a>
-
-                                        
                                         {% if messages %}
                                             {% for message in messages %}
                                                 <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
@@ -68,19 +66,27 @@
                                             {% csrf_token %}
                                     
                                             <input type='hidden' name="parent_folder" value="{{current_folder_id}}">
-                                            <label for="foldername">Nome da pasta: </label>
-                                            <input name = "foldername" placeholder = "Folder Name", required></input>
-                                            <button type="submit">Criar</button>
+                                            <label for="foldername">Nova pasta: </label>
+                                            <input class = "inputNovaPasta" name = "foldername" placeholder = "Nome da pasta", required></input>
+                                            <div class = "btns_confirmacao">
+                                                <button class = "newFolder" type="submit">Criar</button>
+                                            </div>
                                         </form> 
 
                                         <form class = "uploadFile" action="{% if folder %}{%url 'uploadFile' folder.id %}{%else%}{%url 'uploadFile'%}{%endif%}" method="POST" enctype="multipart/form-data">
                                             {% csrf_token %}
                                             
+                                            <label>Upload</label>
                                             <label class = "inputFile" for = "file">Escolher arquivo</label>
                                             <input  class = "escolherFile" id="file" type="file" name="file">
                                             <div class = "btns_confirmacao">
                                                 <button class = "btn_uploadFile2" type="submit">Submeter</button>
                                             </div>
+                                        </form>
+
+                                        <form id="search-form">
+                                            <label for="search-input">Buscar:</label>
+                                            <input type="text" id="search-input" placeholder="Buscar arquivos e pastas...">
                                         </form>
 
                                     </div>

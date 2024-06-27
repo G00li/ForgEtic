@@ -81,11 +81,9 @@
     margin-top: 0;
 }
 
-input[type="text"] {
+.renomearInput{
     padding: 8px;
     margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
 }
 
 .divFileDownload {
@@ -129,3 +127,4 @@ input[type="text"] {
     transition: background-color 0.3s;
 
 }
+
