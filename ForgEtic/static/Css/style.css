@@ -279,7 +279,7 @@ body{
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 30%;
+    height: 50%;
     gap:10px ;
 }
 
@@ -290,7 +290,7 @@ body{
 .inputFile{
     display: flex;
     width: 100%;
-    height: 12%;
+    height: 8%;
     background-color: whitesmoke;
     font-size: large;
     justify-content: center;
@@ -336,7 +336,7 @@ body{
     justify-content: center;
     align-items: center;
     width: 50%;
-    height: 70%;
+    height: 50%;
     border-radius: 5px;
     border: 1px solid black;
     background-color: rgb(164, 164, 164);
@@ -353,9 +353,14 @@ body{
     margin-top: 3%;
 }
 
+.buscar{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 20%;
+}
 
-
-#search-form {
+.search-form {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -363,12 +368,11 @@ body{
     margin-top: 20px;
 }
 
-#search-input {
+.search-input {
     width: 100%;
     padding: 8px;
     margin-top: 8px;
     box-sizing: border-box;
-    border: 1px solid #ccc;
     border-radius: 4px;
 }
 

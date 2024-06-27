@@ -61,17 +61,16 @@ def login(request):
 def resetPassword(request):
     if request.method == "GET":
         return render(request, 'formResetPass.html')
-    else:
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        novasenha = request.POST.get('senha')
-        contrasenha = request.POST.get('contrasenha')
+    elif request.method == "POST":
+        username = request.POST.get('usernamereset')
+        email = request.POST.get('emailreset')
+        novasenha = request.POST.get('senhareset')
+        contrasenha = request.POST.get('contraSenha')
 
         user=User.objects.filter(username=username, email=email).first()
 
         if user:
-            if novasenha == contrasenha: #//TODO - Nao funciona! A senha nao é atualizada! 
-                # user.password = make_password(novasenha)
+            if novasenha == contrasenha:
                 user.set_password(contrasenha)
                 user.save()
                 return redirect('login')  

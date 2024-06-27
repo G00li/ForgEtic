@@ -51,7 +51,6 @@
                     {% if user.is_authenticated %}
                             {% block 'SideBar' %}
                                 <section class = "side-bar">
-                                    <h1> Barra lateral </h1>
                                     <div class = "btns">
                                         {% if messages %}
                                             {% for message in messages %}
@@ -60,8 +59,13 @@
                                                 </div>
                                             {% endfor %}
                                         {% endif %}
-                                    
-                                    
+                                        <div class = "buscar">
+                                            <form class="search-form">
+                                                <label class="search-input">Buscar:</label>
+                                                <input type="text" id="search-input" placeholder="Buscar arquivos e pastas...">
+                                            </form>
+                                        </div>
+
                                         <form class = "ClassFolderName" action = "{% url 'newfolder' %}" method = "POST">
                                             {% csrf_token %}
                                     
@@ -84,10 +88,6 @@
                                             </div>
                                         </form>
 
-                                        <form id="search-form">
-                                            <label for="search-input">Buscar:</label>
-                                            <input type="text" id="search-input" placeholder="Buscar arquivos e pastas...">
-                                        </form>
 
                                     </div>
 
