@@ -127,6 +127,10 @@ STATICFILES_DIRS = [
     BASE_DIR / 'ForgEtic/static',
 ]
 
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+
 # Dizendo para o projeto onde vamos salvar os arquivos que foram feitos uploads
 MEDIA_ROOT = os.path.join(BASE_DIR, 'upload')
 MEDIA_URL = '/upload/'
