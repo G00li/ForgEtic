@@ -10,7 +10,7 @@ O objetivo do projeto foi reinventar uma drive, possibilitando os users não só
 
 
 
-## Organização do projeto: 
+## Organização do projeto〘💻〙: 
 
 ### Tree do projeto: 
 ```
@@ -81,10 +81,10 @@ O projeto é dividido em 1 pasta projeto e 2 apps:
 **Static/Css:**
 	é onde contem toda a estilização do projeto. 
 	subdividido em 4 pastas, cada uma com a sua estilização específica: 
-	- File.css -> Css responsável pela estilização dos Files
-	- Folder.css -> Css responsável pela estilização do Folders
-	- InitialPage.css -> Css responsável pela página quando nenhum usuário esteja logado
-	- Style.css  -> Css raiz de todo o esqueleto do site
+- File.css ➯ Css responsável pela estilização dos Files
+- Folder.css ➯ Css responsável pela estilização do Folders
+- InitialPage.css ➯ Css responsável pela página quando nenhum usuário esteja logado
+- Style.css ➯ Css raiz de todo o esqueleto do site
 
 
 #### App_usuário:
@@ -108,7 +108,7 @@ Basicamente, toda a lógica de criação, edição e excluir os files e folders 
 
 Com essas 3 Folders em sincronia, o projeto consegue fazer upload, download e delete dos folders e files. 
 
-## Processo de instalação: 
+## Processo de instalação : 
 
 Nosso aplicativo se encontra disponível em um [repositório Github](https://github.com/G00li/ForgEtic), completamente gratuito e de fácil acesso. 
 
