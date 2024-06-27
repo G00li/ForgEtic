@@ -221,53 +221,44 @@ def uploadFileView(request, folder_id=None):
 
     if request.method == 'POST':
 
-        file = request.FILES.get('file')
-
-        fileInRoot = File.objects.filter(user=user, parent_folder= None)
-
-        print("Files in root: ", fileInRoot)
-
-        FolderInRoot = Folder.objects.filter(user=user, parent_folder=None)
-        print("Folders in Root: ", FolderInRoot)
-
-
+        files = request.FILES.getlist('files')
 
         if folder_id is not None:
             current_folder = Folder.objects.get(id=folder_id)
 
 
         # Confirmando se existe um arquivo para fazer upload e redirecionando para pasta que está
-        if not file:
+        if not files:
             messages.error(request, "Nenhum arquivo selecionado.")
             if folder_id is None:
                 return redirect('folderView') 
             else:
                 return redirect('folderParent', folder_id=folder_id)
 
+        for file in files: 
+            try:
+                base_filename, extension = os.path.splitext(file.name)
 
-        try:
-            base_filename, extension = os.path.splitext(file.name)
-
-            slug = slugify(base_filename)
-            count = 1
-            new_filename = f"{slug}{extension}"
-
-
-
-            while File.objects.filter(parent_folder = current_folder, user = user, name=new_filename).exists():
-                new_filename = f"{slug}{count}{extension}"
-                count = count + 1
+                slug = slugify(base_filename)
+                count = 1
+                new_filename = f"{slug}{extension}"
 
 
-            new_file = File(parent_folder=current_folder, user=user, file=file, name=new_filename)
-            new_file.file.name = new_filename
-            new_file.save()
 
-            messages.success(request, "Arquivo carregado com sucesso")
-        
-        
-        except Exception as e:
-            messages.error(request, f"Erro ao carregar o arquivo: {str(e)}")
+                while File.objects.filter(parent_folder = current_folder, user = user, name=new_filename).exists():
+                    new_filename = f"{slug}{count}{extension}"
+                    count = count + 1
+
+
+                new_file = File(parent_folder=current_folder, user=user, file=file, name=new_filename)
+                new_file.file.name = new_filename
+                new_file.save()
+
+                messages.success(request, "Arquivo carregado com sucesso")
+            
+            
+            except Exception as e:
+                messages.error(request, f"Erro ao carregar o arquivo: {str(e)}")
 
 
         if folder_id is None:
@@ -298,7 +289,7 @@ def renameFile (request, file_id):
 
         base_filename, extension = os.path.splitext(file.file.name)
         
-        new_filename = f"{slugify(new_filename_base)}{extension}"
+        new_filename = f"{new_filename_base}{extension}"
 
 
 

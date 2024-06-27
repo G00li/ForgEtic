@@ -63,6 +63,8 @@
 
         <div class = "divfile">
 
+          <a href="{{file.file.url}}" target="_blank">
+
             <div class="file-icon">
                 <svg class = "svgFile" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="130" height="160" viewBox="0 0 256 256" xml:space="preserve">
                   <defs>
@@ -78,9 +80,9 @@
                 </svg> 
             </div>
   
-  
-
             <label class ="labelFileName"> {{file.name}}  </label>
+
+          </a>
 
             <div class ="btns_folder2">
                 <form class = "formBtnsFolder" action="{%url 'rename_file' file.id %}" method = "POST">
