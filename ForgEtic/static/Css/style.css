@@ -336,6 +336,7 @@ body{
     justify-content: center;
     align-items: center;
     width: 50%;
+    height: 100%;
     border-radius: 5px;
     border: 1px solid black;
     background-color: rgb(164, 164, 164);
@@ -357,6 +358,7 @@ body{
 
 .btns_confirmacao button:hover{
     background-color: rgb(99, 99, 99);
+    color: whitesmoke;
 
 }
 
