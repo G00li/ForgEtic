@@ -7,5 +7,3 @@ from django.urls import reverse
 
 class IndexView(TemplateView):
     template_name = 'index.html'
-
-

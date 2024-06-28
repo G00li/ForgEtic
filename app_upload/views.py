@@ -25,13 +25,15 @@ def folder_view(request, folder_id = None):
 
     user = request.user
 
+    # Dentro de outra folder
     if folder_id:
         parent_folder = get_object_or_404(Folder, id=folder_id, user=user)
-        folders = Folder.objects.filter(user=request.user, parent_folder= parent_folder)
+        folders = Folder.objects.filter(user=user, parent_folder= parent_folder)
         files = File.objects.filter(user=user, parent_folder=parent_folder)
 
+    # Na root do projeto 
     else:   
-        folders = Folder.objects.filter(user=request.user, parent_folder = None)
+        folders = Folder.objects.filter(user=user, parent_folder = None)
         files = File.objects.filter(user=user, parent_folder=None)
         
 
@@ -76,7 +78,7 @@ def folder_view(request, folder_id = None):
 
 @block_superuser
 @login_required(login_url="/login/")
-def newFolder (request, folder_id = None): 
+def newFolder (request): 
     if request.method == 'POST':
         
         foldername = request.POST.get('foldername')
@@ -116,6 +118,7 @@ def deleteFolder(request, folder_id):
 
     if request.method == 'POST':
         folder.delete()
+        messages.success(request, "Pasta deletada com sucesso")
         return redirect (request.META.get('HTTP_REFERER', 'folderView'))
     
     return redirect('folderView')
@@ -130,13 +133,13 @@ def renameFolder (request, folder_id):
         new_name = request.POST.get('new_name')
 
         if Folder.objects.filter(name=new_name, user=folder.user).exists():
-            messages.error(request, f"Ficheiro já existe:{folder_id}") 
+            messages.error(request, f"Ficheiro já existe.") 
             return redirect (request.META.get('HTTP_REFERER', 'folderView'))
 
         
         folder.name = new_name
         folder.save()
-        messages.success(request, f"Pasta renomeada com sucesso: {folder_id}")
+        messages.success(request, f"Pasta renomeada com sucesso.")
         return redirect (request.META.get('HTTP_REFERER', 'folderView'))
 
     
@@ -177,8 +180,7 @@ def downloadFolder(request, folder_id):
     return response
 
 
-
-
+# Gerando a url para quando está dentro de uma pasta
 @block_superuser
 @login_required(login_url="/login/")
 def getFolderUrl(request, folder_id):
@@ -199,6 +201,7 @@ def getFolderUrl(request, folder_id):
     }) 
 
 
+# Busca o caminho desde a root até a folder atual
 def get_folder_path(folder):
     path = []
     current_folder = folder
@@ -214,8 +217,6 @@ def get_folder_path(folder):
 def uploadFileView(request, folder_id=None):
     user = request.user
     current_folder = None
-    error_folder_id = success_folder_id = None
-    error_message = success_message = None
     files = File.objects.filter(user=user, parent_folder=current_folder)
 
 
