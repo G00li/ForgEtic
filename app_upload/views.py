@@ -125,6 +125,7 @@ def deleteFolder(request, folder_id):
 
 
 @block_superuser
+@login_required(login_url="/login/")
 def renameFolder (request, folder_id):
 
     folder = get_object_or_404(Folder, pk=folder_id, user=request.user)
@@ -132,7 +133,7 @@ def renameFolder (request, folder_id):
     if request.method == 'POST':
         new_name = request.POST.get('new_name')
 
-        if Folder.objects.filter(name=new_name, user=folder.user).exists():
+        if Folder.objects.filter(name=new_name, user=folder.user, parent_folder=folder.parent_folder).exists():
             messages.error(request, f"Ficheiro já existe.") 
             return redirect (request.META.get('HTTP_REFERER', 'folderView'))
 
@@ -247,7 +248,7 @@ def uploadFileView(request, folder_id=None):
 
 
                 while File.objects.filter(parent_folder = current_folder, user = user, name=new_filename).exists():
-                    new_filename = f"{slug}{count}{extension}"
+                    new_filename = f"{slug}-({count}){extension}"
                     count = count + 1
 
 
